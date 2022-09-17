@@ -33,6 +33,10 @@ export default {
       UNDERSTAND_OTHER_PEOPLE: 'Understand other people',
       LEARN_COMPATIBILITY: 'Learn compatibility',
       FIND_SOUL_MATE: 'Find a soul mate',
+      COMMUNICATION: 'Communication skills',
+      EMPATHY: 'Empathy',
+      ENERGY: 'Energy',
+      DILIGENCE: 'Diligence',
     },
     BUTTONS: {
       START: 'START',

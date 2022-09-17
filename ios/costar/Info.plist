@@ -17,26 +17,38 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.38.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
-	<true/>
+	<true />
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>localhost</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-		</dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true />
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string />
+	<key>UIAppFonts</key>
+	<array>
+		<string>Montserrat-Bold.ttf</string>
+		<string>Montserrat-ExtraLight.ttf</string>
+		<string>Montserrat-Medium.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>Montserrat-SemiBold.ttf</string>
+		<string>SFProDisplay-Bold.ttf</string>
+		<string>SFProDisplay-Light.ttf</string>
+		<string>SFProDisplay-Medium.ttf</string>
+		<string>SFProDisplay-Regular.ttf</string>
+		<string>SFProDisplay-Semibold.ttf</string>
+		<string>SFUIDisplay-Bold.ttf</string>
+		<string>SFUIDisplay-Light.ttf</string>
+		<string>SFUIDisplay-Medium.ttf</string>
+		<string>SFUIDisplay-Regular.ttf</string>
+		<string>SFUIDisplay-Semibold.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -50,6 +62,21 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<false />
+	<key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb409630354626275</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>409630354626275</string>
+    <key>FacebookClientToken</key>
+    <string>8573102cb0f809d47433ecc4ed2d64f9</string>
+    <key>FacebookDisplayName</key>
+    <string>Costar</string>
 </dict>
 </plist>

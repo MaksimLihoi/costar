@@ -1,3 +1,6 @@
 // @flow
 
-export Card from './card';
+export * from './card';
+export * from './FixedButton';
+export * from './SubscriptionBigButton';
+export * from './SubscriptionCircleButton';

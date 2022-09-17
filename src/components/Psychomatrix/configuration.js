@@ -20,78 +20,78 @@ import titleLamp from 'assets/images/psychomatrix/post/icons/titleLamp.png';
 import titlePath from 'assets/images/psychomatrix/post/icons/titlePath.png';
 import titleBrain from 'assets/images/psychomatrix/post/icons/titleBrain.png';
 
-import I18n from 'src/shared/i18n/configuration';
+import {resources} from '../../shared';
 
 export const sections: Array<SectionType> = [
-    {
-        id: 0,
-        key: 'characterWill',
-        title: I18n.t('PSYCHOMATRIX.CHARACTER_WILL'),
-        icon: Head,
-        titleIcon: titleHead,
-    },
-    {
-        id: 1,
-        key: 'healthBeauty',
-        title: I18n.t('PSYCHOMATRIX.HEALTH_AND_BEAUTY'),
-        icon: Heart,
-        titleIcon: titleHeart,
-    },
-    {
-        id: 2,
-        key: 'luck',
-        title: I18n.t('PSYCHOMATRIX.LUCK'),
-        icon: Clover,
-        titleIcon: titleClover,
-    },
-    {
-        id: 3,
-        key: 'vitalEnergy',
-        title: I18n.t('PSYCHOMATRIX.VITAL_ENERGY'),
-        icon: Energy,
-        titleIcon: titleEnergy,
-    },
-    {
-        id: 4,
-        key: 'logicIntuition',
-        title: I18n.t('PSYCHOMATRIX.LOGIC_AND_INTUITION'),
-        icon: Chess,
-        titleIcon: titleChess,
-    },
-    {
-        id: 5,
-        key: 'duty',
-        title: I18n.t('PSYCHOMATRIX.DUTY'),
-        icon: Handshake,
-        titleIcon: titleHandshake,
-    },
-    {
-        id: 6,
-        key: 'cognitiveCreative',
-        title: I18n.t('PSYCHOMATRIX.COGNITIVE_AND_CREATIVE'),
-        icon: Lamp,
-        titleIcon: titleLamp,
-    },
-    {
-        id: 7,
-        key: 'laborSkill',
-        title: I18n.t('PSYCHOMATRIX.LABOR_AND_SKILL'),
-        icon: Path,
-        titleIcon: titlePath,
-    },
-    {
-        id: 8,
-        key: 'intellectMemory',
-        title: I18n.t('PSYCHOMATRIX.INTELLECT_AND_MEMORY'),
-        icon: Brain,
-        titleIcon: titleBrain,
-    },
+  {
+    id: 0,
+    key: 'characterWill',
+    title: resources.t('PSYCHOMATRIX.CHARACTER_WILL'),
+    icon: Head,
+    titleIcon: titleHead,
+  },
+  {
+    id: 1,
+    key: 'healthBeauty',
+    title: resources.t('PSYCHOMATRIX.HEALTH_AND_BEAUTY'),
+    icon: Heart,
+    titleIcon: titleHeart,
+  },
+  {
+    id: 2,
+    key: 'luck',
+    title: resources.t('PSYCHOMATRIX.LUCK'),
+    icon: Clover,
+    titleIcon: titleClover,
+  },
+  {
+    id: 3,
+    key: 'vitalEnergy',
+    title: resources.t('PSYCHOMATRIX.VITAL_ENERGY'),
+    icon: Energy,
+    titleIcon: titleEnergy,
+  },
+  {
+    id: 4,
+    key: 'logicIntuition',
+    title: resources.t('PSYCHOMATRIX.LOGIC_AND_INTUITION'),
+    icon: Chess,
+    titleIcon: titleChess,
+  },
+  {
+    id: 5,
+    key: 'duty',
+    title: resources.t('PSYCHOMATRIX.DUTY'),
+    icon: Handshake,
+    titleIcon: titleHandshake,
+  },
+  {
+    id: 6,
+    key: 'cognitiveCreative',
+    title: resources.t('PSYCHOMATRIX.COGNITIVE_AND_CREATIVE'),
+    icon: Lamp,
+    titleIcon: titleLamp,
+  },
+  {
+    id: 7,
+    key: 'laborSkill',
+    title: resources.t('PSYCHOMATRIX.LABOR_AND_SKILL'),
+    icon: Path,
+    titleIcon: titlePath,
+  },
+  {
+    id: 8,
+    key: 'intellectMemory',
+    title: resources.t('PSYCHOMATRIX.INTELLECT_AND_MEMORY'),
+    icon: Brain,
+    titleIcon: titleBrain,
+  },
 ];
 
 export type SectionType = {
-    id: number,
-    key: string,
-    title: string,
-    icon: any,
-    titleIcon: any,
+  id: number,
+  key: string,
+  title: string,
+  icon: any,
+  titleIcon: any,
 };

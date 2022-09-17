@@ -23,4 +23,4 @@ const fonts = {
   sfProBold: 'SFProDisplay-Bold',
 };
 
-export {fonts};
+export { fonts };

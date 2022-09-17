@@ -9,11 +9,27 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* costarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* costarTests.m */; };
 		0C80B921A6F3F58F76C31292 /* libPods-costar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-costar.a */; };
+		0FF44D708E244A0E90FE99B2 /* SFUIDisplay-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8BBB95D1B62432492E318E8 /* SFUIDisplay-Light.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		30B0AEF72FA441D39A7018AD /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF1B610642BF4473A775BECA /* Montserrat-Medium.ttf */; };
+		31DB1F5971F0487B8C041795 /* SFUIDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D77B7525DCE44AF85EEB8A1 /* SFUIDisplay-Regular.ttf */; };
+		34B4FA827AA141BE8BD7A3F5 /* SFProDisplay-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3C9DB57B1E64314A87B5931 /* SFProDisplay-Light.ttf */; };
+		5BC83296165C450C80A9728E /* SFUIDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2CD4F7E15F8A4C2FAD5034C5 /* SFUIDisplay-Bold.ttf */; };
+		5F75AFE2BA244013821BE873 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C28E4D04A0954C109D060F38 /* Montserrat-SemiBold.ttf */; };
+		6646DEC31BD3432286B74A95 /* SFProDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7C2A9E728F14BB2B2694C2F /* SFProDisplay-Bold.ttf */; };
+		68693AE889A94160BB78716E /* SFUIDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD787041BE164323ACD02EE5 /* SFUIDisplay-Medium.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-costar-costarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-costar-costarTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		92845467377A4CA5BE7E3C89 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B964DC85DD9040F4A7E0C8C3 /* Montserrat-Regular.ttf */; };
+		9A9FF40BD683400FBE8C1D7F /* SFProDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D720D4960E44382B59EE812 /* SFProDisplay-Semibold.ttf */; };
+		A13AA71A23184CCE884D032C /* SFUIDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 612945EE9F2B471DABB7ED3C /* SFUIDisplay-Semibold.ttf */; };
+		A792E7A828D075BB00DFF2AB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A792E7A728D075BB00DFF2AB /* StoreKit.framework */; };
+		BD2CF77FD4354B8CBF6128C8 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4247A16F3134A9290D50DBE /* Montserrat-ExtraLight.ttf */; };
+		CD644E15AD0F44D1BB8D63C0 /* SFProDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE112E5427DA4680B885B12F /* SFProDisplay-Medium.ttf */; };
+		EE1705B9A250471FB7B82EAB /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7F68404D6474B05A56988E9 /* Montserrat-Bold.ttf */; };
+		FAF4A088127641CEB961797C /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F2305C1F5944AF09FE087D2 /* SFProDisplay-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +46,7 @@
 		00E356EE1AD99517003FC87E /* costarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = costarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* costarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = costarTests.m; sourceTree = "<group>"; };
+		0D77B7525DCE44AF85EEB8A1 /* SFUIDisplay-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Regular.ttf"; path = "../assets/fonts/SFUIDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* costar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = costar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = costar/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = costar/AppDelegate.mm; sourceTree = "<group>"; };
@@ -37,12 +54,27 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = costar/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = costar/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-costar-costarTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-costar-costarTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CD4F7E15F8A4C2FAD5034C5 /* SFUIDisplay-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Bold.ttf"; path = "../assets/fonts/SFUIDisplay-Bold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-costar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-costar.debug.xcconfig"; path = "Target Support Files/Pods-costar/Pods-costar.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-costar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-costar.release.xcconfig"; path = "Target Support Files/Pods-costar/Pods-costar.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-costar-costarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-costar-costarTests.debug.xcconfig"; path = "Target Support Files/Pods-costar-costarTests/Pods-costar-costarTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-costar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-costar.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		612945EE9F2B471DABB7ED3C /* SFUIDisplay-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Semibold.ttf"; path = "../assets/fonts/SFUIDisplay-Semibold.ttf"; sourceTree = "<group>"; };
+		6D720D4960E44382B59EE812 /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Semibold.ttf"; path = "../assets/fonts/SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = costar/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-costar-costarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-costar-costarTests.release.xcconfig"; path = "Target Support Files/Pods-costar-costarTests/Pods-costar-costarTests.release.xcconfig"; sourceTree = "<group>"; };
+		9F2305C1F5944AF09FE087D2 /* SFProDisplay-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Regular.ttf"; path = "../assets/fonts/SFProDisplay-Regular.ttf"; sourceTree = "<group>"; };
+		A792E7A728D075BB00DFF2AB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A7C2A9E728F14BB2B2694C2F /* SFProDisplay-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Bold.ttf"; path = "../assets/fonts/SFProDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		A7F68404D6474B05A56988E9 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		AD787041BE164323ACD02EE5 /* SFUIDisplay-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Medium.ttf"; path = "../assets/fonts/SFUIDisplay-Medium.ttf"; sourceTree = "<group>"; };
+		B3C9DB57B1E64314A87B5931 /* SFProDisplay-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Light.ttf"; path = "../assets/fonts/SFProDisplay-Light.ttf"; sourceTree = "<group>"; };
+		B964DC85DD9040F4A7E0C8C3 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		BE112E5427DA4680B885B12F /* SFProDisplay-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Medium.ttf"; path = "../assets/fonts/SFProDisplay-Medium.ttf"; sourceTree = "<group>"; };
+		BF1B610642BF4473A775BECA /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		C28E4D04A0954C109D060F38 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		D8BBB95D1B62432492E318E8 /* SFUIDisplay-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Light.ttf"; path = "../assets/fonts/SFUIDisplay-Light.ttf"; sourceTree = "<group>"; };
+		E4247A16F3134A9290D50DBE /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -60,6 +92,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C80B921A6F3F58F76C31292 /* libPods-costar.a in Frameworks */,
+				A792E7A828D075BB00DFF2AB /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,11 +132,34 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A792E7A728D075BB00DFF2AB /* StoreKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-costar.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-costar-costarTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B019CE76C2E49DA81B6B6CB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A7F68404D6474B05A56988E9 /* Montserrat-Bold.ttf */,
+				E4247A16F3134A9290D50DBE /* Montserrat-ExtraLight.ttf */,
+				BF1B610642BF4473A775BECA /* Montserrat-Medium.ttf */,
+				B964DC85DD9040F4A7E0C8C3 /* Montserrat-Regular.ttf */,
+				C28E4D04A0954C109D060F38 /* Montserrat-SemiBold.ttf */,
+				A7C2A9E728F14BB2B2694C2F /* SFProDisplay-Bold.ttf */,
+				B3C9DB57B1E64314A87B5931 /* SFProDisplay-Light.ttf */,
+				BE112E5427DA4680B885B12F /* SFProDisplay-Medium.ttf */,
+				9F2305C1F5944AF09FE087D2 /* SFProDisplay-Regular.ttf */,
+				6D720D4960E44382B59EE812 /* SFProDisplay-Semibold.ttf */,
+				2CD4F7E15F8A4C2FAD5034C5 /* SFUIDisplay-Bold.ttf */,
+				D8BBB95D1B62432492E318E8 /* SFUIDisplay-Light.ttf */,
+				AD787041BE164323ACD02EE5 /* SFUIDisplay-Medium.ttf */,
+				0D77B7525DCE44AF85EEB8A1 /* SFUIDisplay-Regular.ttf */,
+				612945EE9F2B471DABB7ED3C /* SFUIDisplay-Semibold.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -122,6 +178,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				7B019CE76C2E49DA81B6B6CB /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -200,6 +257,9 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -244,6 +304,21 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				EE1705B9A250471FB7B82EAB /* Montserrat-Bold.ttf in Resources */,
+				BD2CF77FD4354B8CBF6128C8 /* Montserrat-ExtraLight.ttf in Resources */,
+				30B0AEF72FA441D39A7018AD /* Montserrat-Medium.ttf in Resources */,
+				92845467377A4CA5BE7E3C89 /* Montserrat-Regular.ttf in Resources */,
+				5F75AFE2BA244013821BE873 /* Montserrat-SemiBold.ttf in Resources */,
+				6646DEC31BD3432286B74A95 /* SFProDisplay-Bold.ttf in Resources */,
+				34B4FA827AA141BE8BD7A3F5 /* SFProDisplay-Light.ttf in Resources */,
+				CD644E15AD0F44D1BB8D63C0 /* SFProDisplay-Medium.ttf in Resources */,
+				FAF4A088127641CEB961797C /* SFProDisplay-Regular.ttf in Resources */,
+				9A9FF40BD683400FBE8C1D7F /* SFProDisplay-Semibold.ttf in Resources */,
+				5BC83296165C450C80A9728E /* SFUIDisplay-Bold.ttf in Resources */,
+				0FF44D708E244A0E90FE99B2 /* SFUIDisplay-Light.ttf in Resources */,
+				68693AE889A94160BB78716E /* SFUIDisplay-Medium.ttf in Resources */,
+				31DB1F5971F0487B8C041795 /* SFUIDisplay-Regular.ttf in Resources */,
+				A13AA71A23184CCE884D032C /* SFUIDisplay-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,7 +560,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = ZW98R5K9TL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = costar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -497,7 +573,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sayhi.matchup;
 				PRODUCT_NAME = costar;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -511,7 +587,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = ZW98R5K9TL;
 				INFOPLIST_FILE = costar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -522,7 +599,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sayhi.matchup;
 				PRODUCT_NAME = costar;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

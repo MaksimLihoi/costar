@@ -1,9 +1,9 @@
-import {call, put} from 'redux-saga/effects';
-import {Alert} from 'react-native';
+import { call, put } from 'redux-saga/effects';
+import { Alert } from 'react-native';
 import * as types from '../../actions/types';
 import * as request from './request';
 
-export function* doubleMatchUp({womanBirthDate, manBirthDate}) {
+export function* doubleMatchUp({ womanBirthDate, manBirthDate }) {
   try {
     const response = yield call(
       request.doubleMatchUpRequest,
@@ -19,11 +19,11 @@ export function* doubleMatchUp({womanBirthDate, manBirthDate}) {
     });
   } catch (error) {
     Alert.alert('Bad internet connection. Try again.');
-    yield put({type: types.DOUBLE_COMPATIBILITY_FAILURE, error});
+    yield put({ type: types.DOUBLE_COMPATIBILITY_FAILURE, error });
   }
 }
 
-export function* singleMatchUp({userBirthDate}) {
+export function* singleMatchUp({ userBirthDate }) {
   try {
     const response = yield call(request.singleMatchUpRequest, userBirthDate);
     const singleCompatibility = response.data;
@@ -34,11 +34,11 @@ export function* singleMatchUp({userBirthDate}) {
     });
   } catch (error) {
     Alert.alert('Bad internet connection. Try again.');
-    yield put({type: types.SINGLE_COMPATIBILITY_FAILURE, error});
+    yield put({ type: types.SINGLE_COMPATIBILITY_FAILURE, error });
   }
 }
 
-export function* getSkills({userBirthDate}) {
+export function* getSkills({ userBirthDate }) {
   try {
     const response = yield call(request.getSkillsRequest, userBirthDate);
     const skills = response.data;
@@ -49,16 +49,17 @@ export function* getSkills({userBirthDate}) {
     });
   } catch (error) {
     Alert.alert('Bad internet connection. Try again.');
-    yield put({type: types.GET_SKILLS_FAILURE, error});
+    yield put({ type: types.GET_SKILLS_FAILURE, error });
   }
 }
 
-export function* getPrognosisToday({userBirthDate}) {
+export function* getPrognosisToday({ userBirthDate }) {
   try {
     const response = yield call(
       request.getPrognosisRequestToday,
       userBirthDate,
     );
+
     const prognosis = response.data;
     yield put({
       type: types.GET_PROGNOSIS_TODAY_SUCCESS,
@@ -67,11 +68,11 @@ export function* getPrognosisToday({userBirthDate}) {
     });
   } catch (error) {
     Alert.alert('Bad internet connection. Try again.');
-    yield put({type: types.GET_PROGNOSIS_TODAY_FAILURE, error});
+    yield put({ type: types.GET_PROGNOSIS_TODAY_FAILURE, error });
   }
 }
 
-export function* getPrognosisTomorrow({userBirthDate}) {
+export function* getPrognosisTomorrow({ userBirthDate }) {
   try {
     const response = yield call(
       request.getPrognosisRequestTomorrow,
@@ -85,11 +86,11 @@ export function* getPrognosisTomorrow({userBirthDate}) {
     });
   } catch (error) {
     Alert.alert('Bad internet connection. Try again.');
-    yield put({type: types.GET_PROGNOSIS_TOMORROW_FAILURE, error});
+    yield put({ type: types.GET_PROGNOSIS_TOMORROW_FAILURE, error });
   }
 }
 
-export function* getPrognosisYesterday({userBirthDate}) {
+export function* getPrognosisYesterday({ userBirthDate }) {
   try {
     const response = yield call(
       request.getPrognosisRequestYesterday,
@@ -103,7 +104,7 @@ export function* getPrognosisYesterday({userBirthDate}) {
     });
   } catch (error) {
     Alert.alert('Bad internet connection. Try again.');
-    yield put({type: types.GET_PROGNOSIS_YESTERDAY_FAILURE, error});
+    yield put({ type: types.GET_PROGNOSIS_YESTERDAY_FAILURE, error });
   }
 }
 
@@ -117,7 +118,7 @@ export function* getFeedbackLinks() {
     });
   } catch (error) {
     Alert.alert('Bad internet connection. Try again.');
-    yield put({type: types.GET_FEEDBACK_LINKS_FAILURE, error});
+    yield put({ type: types.GET_FEEDBACK_LINKS_FAILURE, error });
   }
 }
 
@@ -131,6 +132,6 @@ export function* getFAQ() {
     });
   } catch (error) {
     Alert.alert('Bad internet connection. Try again.');
-    yield put({type: types.GET_FAQ_FAILURE, error});
+    yield put({ type: types.GET_FAQ_FAILURE, error });
   }
 }

@@ -6,6 +6,9 @@
 
 #import <React/RCTAppSetupUtils.h>
 
+#import <FBSDKCoreKit/FBSDKCoreKit.h> // <- Add This Import
+#import <React/RCTLinkingManager.h> // <- Add This Import
+
 #if RCT_NEW_ARCH_ENABLED
 #import <React/CoreModulesPlugins.h>
 #import <React/RCTCxxBridgeDelegate.h>
@@ -57,8 +60,23 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [FBSDKApplicationDelegate.sharedInstance initializeSDK];
   return YES;
 }
+
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  if ([[FBSDKApplicationDelegate sharedInstance] application:app openURL:url options:options]) {
+    return YES;
+  }
+  if ([RCTLinkingManager application:app openURL:url options:options]) {
+    return YES;
+  }
+  return NO;
+}
+
 
 /// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
 ///
@@ -131,3 +149,4 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 #endif
 
 @end
+

@@ -121,4 +121,4 @@ const img = {
   doneIcon: require('./images/arrowBottom.png'),
 };
 
-export {img};
+export { img };

@@ -4,6 +4,7 @@ export const BottomTabNavigatorRouts = {
   Compatibility: 'compatibility',
 };
 export const RootStackNavigatorRouts = {
+  Onboarding: 'onboarding',
   TabNavigator: 'tabNavigator',
   SubscribeFirstVariant: 'subscribeFirstVariant',
   Privacy: 'privacy',

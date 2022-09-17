@@ -2,117 +2,117 @@
 
 import React, { PureComponent } from 'react';
 import {
-    Text,
-    View,
-    Image,
-    TouchableOpacity,
-    ActivityIndicator,
+  ActivityIndicator,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { withNavigation, NavigationScreenProps } from 'react-navigation';
 
-import { logEvent } from 'src/shared/analytics/FB';
-import I18n from 'src/shared/i18n/configuration';
+import { resources } from '../../../shared';
 import Button from 'src/shared/components/Button';
 import { img } from 'assets/img';
 import { colors } from 'src/variables';
-import { AmplitudeLogEvent } from 'src/shared/analytics/Amplitude';
-import { navigateToSubscriptionScreen } from 'src/shared/analytics/Firebase';
 import styles from './styles';
+import { NavigationContext } from '@react-navigation/native';
+import { RootStackNavigatorRouts } from '../../../variables/navigationRouts';
+import { trackEvent } from '../../../shared/analytics';
+import { Events } from '../../../shared/analytics/events';
 
 type Props = {
-    title: string,
-    titleIcon: any,
-    description: string,
-    isActivePurchase: boolean,
-    id: number,
-    navigation: NavigationScreenProps,
-    refresh(): Promise<void>,
-    isFetching: boolean,
+  title: string,
+  titleIcon: any,
+  description: string,
+  isActivePurchase: boolean,
+  id: number,
+  refresh(): Promise<void>,
+  isFetching: boolean,
+};
+
+const TitleEvent = {
+  'Health, Beauty': Events.Personality.HealthUnlockButtonClick,
+  Luck: Events.Personality.LuckUnlockButtonClick,
+  'Vital Energy': Events.Personality.VitalUnlockButtonClick,
+  'Logic, Intuition': Events.Personality.LogicUnlockButtonClick,
+  Duty: Events.Personality.DutyUnlockButtonClick,
+  'Cognitive, Creative': Events.Personality.CognitiveUnlockButtonClick,
+  'Labor, Skill': Events.Personality.LaborUnlockButtonClick,
+  'Intellect, Memory': Events.Personality.IntellectUnlockButtonClick,
 };
 
 class PsychomatrixPost extends PureComponent<Props> {
-    onPress = (eventItem: string) => {
-        const { navigation, refresh } = this.props;
+  static contextType = NavigationContext;
+  onPress = (eventItem: string) => {
+    let navigation = this.context;
+    const { title } = this.props;
 
-        logEvent(`${eventItem}_personality_psychomatrix_unlock_tapped`);
-        AmplitudeLogEvent(
-            `${eventItem}_personality_unlock_tapped`,
-        );
-
-        navigateToSubscriptionScreen(
-            navigation,
-            refresh,
-            `${eventItem}_personality_unlock_tapped`,
-        );
-    };
-
-    render() {
-        const {
-            title,
-            description,
-            isActivePurchase,
-            isFetching,
-            titleIcon,
-            id,
-        } = this.props;
-        return (
-            <View style={styles.container}>
-                {isActivePurchase || id === 0 ? (
-                    <>
-                        {title && (
-                            <View style={styles.titleContainer}>
-                                <Image
-                                    source={titleIcon}
-                                    resizeMode="contain"
-                                    style={styles.titleIcon}
-                                />
-                                <Text style={styles.title}>{title}</Text>
-                                {isFetching && (
-                                    <ActivityIndicator
-                                        style={styles.activityIndicator}
-                                        size="large"
-                                        color={colors.violet}
-                                    />
-                                )}
-                            </View>
-                        )}
-                        <Text style={styles.description}>{description}</Text>
-                    </>
-                ) : (
-                    <TouchableOpacity
-                        onPress={() => this.onPress('card')}
-                        style={styles.wrapper}
-                    >
-                        <View>
-                            {title && (
-                                <View style={styles.titleContainer}>
-                                    <Image
-                                        source={titleIcon}
-                                        resizeMode="contain"
-                                        style={styles.titleIcon}
-                                    />
-                                    <Text style={styles.title}>{title}</Text>
-                                </View>
-                            )}
-                            <View style={styles.buttonContainer}>
-                                <Button
-                                    textStyle={styles.buttonText}
-                                    buttonText={I18n.t('PERSONALITY.UNLOCK')}
-                                    onPress={() => this.onPress('button')}
-                                    style={styles.button}
-                                />
-                            </View>
-                        </View>
-                        <Image
-                            source={img.main.lockIcon}
-                            resizeMode="contain"
-                            style={styles.lockIcon}
-                        />
-                    </TouchableOpacity>
-                )}
-            </View>
-        );
+    if (eventItem === 'button') {
+      trackEvent(TitleEvent[title]);
     }
+
+    navigation.navigate(RootStackNavigatorRouts.SubscribeFirstVariant);
+  };
+
+  render() {
+    const { title, description, isActivePurchase, isFetching, titleIcon, id } =
+      this.props;
+    return (
+      <View style={styles.container}>
+        {isActivePurchase || id === 0 ? (
+          <>
+            {title && (
+              <View style={styles.titleContainer}>
+                <Image
+                  source={titleIcon}
+                  resizeMode='contain'
+                  style={styles.titleIcon}
+                />
+                <Text style={styles.title}>{title}</Text>
+                {isFetching && (
+                  <ActivityIndicator
+                    style={styles.activityIndicator}
+                    size='large'
+                    color={colors.violet}
+                  />
+                )}
+              </View>
+            )}
+            <Text style={styles.description}>{description}</Text>
+          </>
+        ) : (
+          <TouchableOpacity
+            onPress={() => this.onPress('card')}
+            style={styles.wrapper}>
+            <View>
+              {title && (
+                <View style={styles.titleContainer}>
+                  <Image
+                    source={titleIcon}
+                    resizeMode='contain'
+                    style={styles.titleIcon}
+                  />
+                  <Text style={styles.title}>{title}</Text>
+                </View>
+              )}
+              <View style={styles.buttonContainer}>
+                <Button
+                  textStyle={styles.buttonText}
+                  buttonText={resources.t('PERSONALITY.UNLOCK')}
+                  onPress={() => this.onPress('button')}
+                  style={styles.button}
+                />
+              </View>
+            </View>
+            <Image
+              source={img.main.lockIcon}
+              resizeMode='contain'
+              style={styles.lockIcon}
+            />
+          </TouchableOpacity>
+        )}
+      </View>
+    );
+  }
 }
 
-export default withNavigation(PsychomatrixPost);
+export default PsychomatrixPost;
