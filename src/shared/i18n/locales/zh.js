@@ -18,7 +18,7 @@ export default {
       DESCRIPTION: '需要生日来算出您的个人数字占卜报告。',
     },
     QUESTION: {
-      TITLE: '调整你的 MatchUp',
+      TITLE: '调整你的 Costar',
     },
     QUESTION_1: '您对自己的了解程度如何？',
     QUESTION_2: '您对别人的了解程度如何？',
@@ -121,7 +121,7 @@ export default {
     REVIEW_1:
       '难以置信的！ MatchUp帮助我了解了自己，我的优点和缺点，对所有问题的非常准确的答案！',
     REVIEW_2:
-      '我弄清楚了我的朋友，同事和家人！ 现在我完全理解它们了！ 谢谢，MatchUp！',
+      '我弄清楚了我的朋友，同事和家人！ 现在我完全理解它们了！ 谢谢，Costar！',
     REVIEW_3: '多亏了MatchUp，我终于意识到我可以和谁兼容！ 我的关系好多了！',
     REVIEW_4: 'MatchUp帮助我找出了最适合我恋爱的人！ 谢谢！',
     AGREEMENTS:

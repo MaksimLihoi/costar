@@ -34,6 +34,7 @@ class Prognosis extends PureComponent<Props> {
   };
 
   renderItem = (title, description, id, icon) => {
+    console.log(description);
     const { isActivePurchase, refresh, isFetching } = this.props;
     return (
       <Card

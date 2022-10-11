@@ -13,11 +13,6 @@ import { useNavigation } from '@react-navigation/native';
 import { useAnalytics } from '../../shared/analytics';
 import { Events } from '../../shared/analytics/events';
 
-type Props = {
-  refresh(): Promise<void>,
-  eventSource: string,
-};
-
 export const SubscriptionBigButton = (props) => {
   const track = useAnalytics();
   const [isVisible, setIsVisible] = useState(true);

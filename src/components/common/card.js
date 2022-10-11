@@ -131,6 +131,19 @@ export class Card extends PureComponent<Props> {
                   <Text style={styles.title}>{title}</Text>
                 </View>
               )}
+              {description && (
+                <View>
+                  <Text
+                    ellipsizeMode='tail'
+                    numberOfLines={2}
+                    style={[
+                      styles.description,
+                      { marginBottom: 0, width: 200 },
+                    ]}>
+                    {description}
+                  </Text>
+                </View>
+              )}
               <View style={styles.buttonContainer}>
                 <Button
                   textStyle={styles.buttonText}
@@ -191,7 +204,8 @@ const styles = StyleSheet.create({
   button: {
     paddingVertical: 10,
     width: 120,
-    marginTop: 24,
+    marginTop: 18,
+    marginBottom: 18,
   },
   buttonText: {
     fontFamily: fonts.sfProSemibold,
