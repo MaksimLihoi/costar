@@ -1,16 +1,16 @@
 // @flow
 
-import React, {PureComponent} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {ScrollIntoView} from 'react-native-scroll-into-view';
+import React, { PureComponent } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { ScrollIntoView } from 'react-native-scroll-into-view';
 
-import {resources} from '../../shared';
+import { resources } from '../../shared';
 import PsychosomaticPost from './PsychosomaticPost';
 import PsychomatrixItem from './PsychomatrixItem';
 import PromotingPost from './PromotingPost';
 import FeedbackPost from './FeedbackPost';
-import type {SectionType} from './configuration';
-import {sections} from './configuration';
+import type { SectionType } from './configuration';
+import { sections } from './configuration';
 import styles from './styles';
 
 type DataItemType = {
@@ -98,7 +98,7 @@ class Psychomatrix extends PureComponent<Props> {
   );
 
   render() {
-    const {data, isActivePurchase, refresh, isFetching} = this.props;
+    const { data, isActivePurchase, refresh, isFetching } = this.props;
     return (
       <>
         <View style={styles.itemContainer}>

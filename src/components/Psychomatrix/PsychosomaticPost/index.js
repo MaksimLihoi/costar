@@ -94,6 +94,19 @@ class PsychomatrixPost extends PureComponent<Props> {
                   <Text style={styles.title}>{title}</Text>
                 </View>
               )}
+              {description && (
+                <View>
+                  <Text
+                    ellipsizeMode='tail'
+                    numberOfLines={2}
+                    style={[
+                      styles.description,
+                      { marginBottom: 0, width: 200 },
+                    ]}>
+                    {description}
+                  </Text>
+                </View>
+              )}
               <View style={styles.buttonContainer}>
                 <Button
                   textStyle={styles.buttonText}
