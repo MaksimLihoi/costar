@@ -6,11 +6,11 @@ import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { colors, fonts } from 'src/variables';
 import { img } from 'assets/img';
 import { resources } from '../../shared';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { Events } from '../../shared/analytics/events';
 import { trackEvent } from '../../shared/analytics';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type State = {
   isVisible: boolean,
@@ -32,7 +32,7 @@ const SubscriptionCircleButton = (props) => {
   };
 
   const onCloseCircleButton = async () => {
-    setState({ isVisible: false });
+    setState(false);
     await AsyncStorage.setItem(
       'purchaseButtonVisibility',
       JSON.stringify(false),

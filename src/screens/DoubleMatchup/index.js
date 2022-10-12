@@ -71,6 +71,7 @@ class DoubleMatchup extends PureComponent<Props, State> {
 
   onDidFocus = async () => {
     AsyncStorage.getItem('purchaseButtonVisibility').then((value) => {
+      console.log(JSON.parse(value));
       this.setState({
         purchaseButtonVisible: JSON.parse(value) !== false,
       });
