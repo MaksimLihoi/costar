@@ -70,13 +70,6 @@ class DoubleMatchup extends PureComponent<Props, State> {
   }
 
   onDidFocus = async () => {
-    AsyncStorage.getItem('purchaseButtonVisibility').then((value) => {
-      console.log(JSON.parse(value));
-      this.setState({
-        purchaseButtonVisible: JSON.parse(value) !== false,
-      });
-    });
-
     await this.getPurchaseStatus();
   };
 
@@ -142,7 +135,6 @@ class DoubleMatchup extends PureComponent<Props, State> {
       isActivePurchase,
       isWomanActive,
       isManActive,
-      purchaseButtonVisible,
     } = this.state;
     const { doubleCompatibility } = this.props;
 
@@ -150,7 +142,7 @@ class DoubleMatchup extends PureComponent<Props, State> {
       <View style={styles.container}>
         <ImageBackground source={img.gradient} style={styles.background}>
           <View style={styles.viewContainer}>
-            {!isActivePurchase && purchaseButtonVisible && (
+            {!isActivePurchase && (
               <SubscriptionCircleButton refresh={this.getPurchaseStatus} />
             )}
             <ScrollView>

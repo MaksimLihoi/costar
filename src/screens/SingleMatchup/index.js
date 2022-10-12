@@ -265,7 +265,7 @@ class SingleMatchup extends PureComponent<Props, State> {
                                 refresh={this.getPurchaseStatus}
                             />
                         )} */}
-            {!isActivePurchase && purchaseButtonVisible && (
+            {!isActivePurchase && (
               <SubscriptionBigButton
                 buttonBottom={buttonBottom}
                 refresh={this.getPurchaseStatus}
