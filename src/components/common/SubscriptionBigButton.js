@@ -13,11 +13,6 @@ import { useNavigation } from '@react-navigation/native';
 import { useAnalytics } from '../../shared/analytics';
 import { Events } from '../../shared/analytics/events';
 
-type Props = {
-  refresh(): Promise<void>,
-  eventSource: string,
-};
-
 export const SubscriptionBigButton = (props) => {
   const track = useAnalytics();
   const [isVisible, setIsVisible] = useState(true);
@@ -38,9 +33,8 @@ export const SubscriptionBigButton = (props) => {
     AsyncStorage.setItem('purchaseButtonVisibility', JSON.stringify(false));
   };
 
-  const { buttonBottom } = props;
   return isVisible ? (
-    <View style={[styles.container, { bottom: buttonBottom }]}>
+    <View style={styles.container}>
       <LinearGradient
         colors={colors.yellowGradient}
         start={{ x: 0, y: 0 }}
@@ -86,6 +80,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.6,
     shadowRadius: 10,
+    bottom: 20,
   },
   gradient: {
     borderRadius: 16,
