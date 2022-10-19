@@ -56,14 +56,16 @@ const CustomDatePicker = ({
             onChange={handleOnChange}
             timeZoneOffsetInMinutes={new Date().getTimezoneOffset() * -1}
           />*/}
-          <DatePicker
-            date={value}
-            maximumDate={new Date()}
-            locale={resources.t('PREFERENCES.LANGUAGE')}
-            mode='date'
-            onDateChange={setValue}
-            timeZoneOffsetInMinutes={new Date().getTimezoneOffset() * -1}
-          />
+          <View style={{ width: '100%', alignItems: 'center' }}>
+            <DatePicker
+              date={value}
+              maximumDate={new Date()}
+              locale={resources.t('PREFERENCES.LANGUAGE')}
+              mode='date'
+              onDateChange={setValue}
+              timeZoneOffsetInMinutes={new Date().getTimezoneOffset() * -1}
+            />
+          </View>
         </View>
       </View>
     </Modal>
@@ -109,4 +111,5 @@ const styles = StyleSheet.create({
     color: colors.darkViolet,
     fontSize: 17,
   },
+  dateContainer: { width: '100%', alignItems: 'center' },
 });
