@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 
-import DatePicker from 'src/shared/components/DatePicker';
+import CustomDatePicker from 'src/shared/components/CustomDatePicker';
 import { createDate, getFormattedDate } from 'src/helpers/dateParsers';
 import { colors, fonts } from 'src/variables';
 import { img } from 'assets/img';
@@ -49,7 +49,7 @@ const SingleDatePicker = ({ userBirthDateParts, onDateChange }: Props) => {
         <Image source={img.doneIcon} style={styles.icon} />
 
         {shouldShowModal && (
-          <DatePicker
+          <CustomDatePicker
             onCancelPressed={hideModal}
             onConfirmPressed={onConfirmPressed}
             currentDate={createDate(userBirthDateParts)}
