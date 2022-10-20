@@ -2,7 +2,6 @@
 
 import React, { useCallback, useState } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-//import DateTimePicker from '@react-native-community/datetimepicker';
 import DatePicker from 'react-native-date-picker';
 import { colors, fonts } from 'src/variables';
 import { resources } from '../i18n/configuration';
@@ -24,7 +23,6 @@ const CustomDatePicker = ({
     () => onConfirmPressed(value),
     [value],
   );
-  //const handleOnChange = useCallback((event, date) => setValue(date), []);
 
   return (
     <Modal animationType='fade' transparent visible>
@@ -48,15 +46,7 @@ const CustomDatePicker = ({
               </Text>
             </TouchableOpacity>
           </View>
-          {/*<DateTimePicker
-            maximumDate={new Date()}
-            value={value}
-            display='spinner'
-            locale={resources.t('PREFERENCES.LANGUAGE')}
-            onChange={handleOnChange}
-            timeZoneOffsetInMinutes={new Date().getTimezoneOffset() * -1}
-          />*/}
-          <View style={{ width: '100%', alignItems: 'center' }}>
+          <View style={styles.dateContainer}>
             <DatePicker
               date={value}
               maximumDate={new Date()}
