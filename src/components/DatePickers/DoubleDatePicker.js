@@ -12,7 +12,7 @@ import { moderateScale } from 'react-native-size-matters';
 
 import { resources } from '../../shared';
 import TouchableCircleRipple from 'src/shared/components/TouchableCircle/TouchableCircleRipple';
-import CustomDatePicker from 'src/shared/components/CustomDatePicker';
+import DatePicker from 'src/shared/components/DatePicker';
 import { createDate, getFormattedDate } from 'src/helpers/dateParsers';
 import { colors, fonts } from 'src/variables';
 import { img } from 'assets/img';
@@ -132,7 +132,7 @@ const DoubleDatePicker = ({
           </View>
         </TouchableWithoutFeedback>
         {shouldShowModal && (
-          <CustomDatePicker
+          <DatePicker
             onCancelPressed={hideModal}
             onConfirmPressed={onConfirmPressed}
             currentDate={
