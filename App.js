@@ -9,8 +9,8 @@ import RootStackNavigator from './src/navigation/RootStackNavigator';
 import purchasesInteractions from './src/shared/purchases/interactions';
 import { AMPLITUDE_API_KEY } from './src/shared/analytics';
 import { init } from '@amplitude/analytics-react-native';
-import appsFlyer from 'react-native-appsflyer';
 import { Settings } from 'react-native-fbsdk-next';
+import appsFlyer from 'react-native-appsflyer';
 
 const persistor = persistStore(store);
 
