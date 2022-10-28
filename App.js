@@ -11,6 +11,7 @@ import { AMPLITUDE_API_KEY } from './src/shared/analytics';
 import { init } from '@amplitude/analytics-react-native';
 import { Settings } from 'react-native-fbsdk-next';
 import appsFlyer from 'react-native-appsflyer';
+import { activateAdapty, adapty } from 'react-native-adapty';
 
 const persistor = persistStore(store);
 
@@ -33,6 +34,21 @@ const App = () => {
 
   useEffect(() => {
     init(AMPLITUDE_API_KEY);
+  }, []);
+
+  useEffect(() => {
+    activateAdapty({ sdkKey: 'public_live_fabSVYF8.r7jC2ljNCMWNTyjOy0RR' });
+  }, []);
+
+  useEffect(() => {
+    appsFlyer.onInstallConversionData((installData) => {
+      try {
+        const networkUserId = appsFlyer.getAppsFlyerUID();
+        adapty.updateAttribution(networkUserId, installData, 'AppsFlyer');
+      } catch (error) {
+        console.log(error);
+      }
+    });
   }, []);
 
   useEffect(() => {
