@@ -44,6 +44,7 @@
     "react-native-store-review": "^0.2.1",
     "react-native-svg": "^13.0.0",
     "react-native-switch-selector": "^2.2.1",
+    "react-native-tracking-transparency": "^0.1.2",
     "react-native-webview": "^11.23.1",
     "react-redux": "^8.0.2",
     "redux": "^4.2.0",

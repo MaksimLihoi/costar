@@ -22,10 +22,14 @@ appsFlyer.initSdk(
     appId: '1464015994',
   },
   (result) => {
-    console.log('result', result);
+    if (__DEV__) {
+      console.log('result', result);
+    }
   },
   (error) => {
-    console.error('error', error);
+    if (__DEV__) {
+      console.error('error', error);
+    }
   },
 );
 
@@ -43,8 +47,15 @@ const App = () => {
   useEffect(() => {
     appsFlyer.onInstallConversionData((installData) => {
       try {
-        const networkUserId = appsFlyer.getAppsFlyerUID();
-        adapty.updateAttribution(networkUserId, installData, 'AppsFlyer');
+        appsFlyer.getAppsFlyerUID((error, uid) => {
+          if (error) {
+            if (__DEV__) {
+              console.error(error);
+            }
+          } else {
+            adapty.updateAttribution(uid, installData, 'AppsFlyer');
+          }
+        });
       } catch (error) {
         console.log(error);
       }

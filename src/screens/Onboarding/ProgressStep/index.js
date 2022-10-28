@@ -18,7 +18,9 @@ class ProgressStep extends PureComponent {
     try {
       await AsyncStorage.setItem('isSeenOnboarding', JSON.stringify(true));
     } catch (error) {
-      console.warn(error);
+      if (__DEV__) {
+        console.warn(error);
+      }
     }
   };
 
