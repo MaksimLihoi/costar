@@ -78,6 +78,9 @@ const NameStep = (props) => {
     getTrackingStatus()
       .then((status) => {
         setTrackingStatus(status);
+        if (__DEV__) {
+          console.log(trackingStatus);
+        }
       })
       .catch((e) => {
         if (__DEV__) {
