@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as actions from '../../store/actions';
 import { REVENUECAT_PUBLIC_SDK_KEY } from './constants';
 import type { PurchasesPackageType } from './types';
+import logger from '../../utils/logger';
 
 const setup = () => Purchases.setup(REVENUECAT_PUBLIC_SDK_KEY);
 
@@ -60,7 +61,7 @@ const setAvailablePurchases = () => async (dispatch: Dispatch) => {
       dispatch(actions.setAvailablePurchases(current.availablePackages));
     }
   } catch (error) {
-    console.log(error);
+    logger.error(error);
   }
 };
 
@@ -80,7 +81,7 @@ const getPurchaseStatus = async () => {
       await AsyncStorage.setItem('isActivePurchase', JSON.stringify(false));
     }
   } catch (error) {
-    console.log(error);
+    logger.error(error);
   }
 };
 

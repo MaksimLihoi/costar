@@ -11,7 +11,8 @@ import { AMPLITUDE_API_KEY } from './src/shared/analytics';
 import { init } from '@amplitude/analytics-react-native';
 import { Settings } from 'react-native-fbsdk-next';
 import appsFlyer from 'react-native-appsflyer';
-import { activateAdapty, adapty } from 'react-native-adapty';
+import { useAdapty } from './src/shared/hooks/useAdapty';
+import logger from './src/utils/logger';
 
 const persistor = persistStore(store);
 
@@ -22,14 +23,10 @@ appsFlyer.initSdk(
     appId: '1464015994',
   },
   (result) => {
-    if (__DEV__) {
-      console.log('result', result);
-    }
+    logger.log('result', result);
   },
   (error) => {
-    if (__DEV__) {
-      console.error('error', error);
-    }
+    logger.error('error', error);
   },
 );
 
@@ -40,27 +37,7 @@ const App = () => {
     init(AMPLITUDE_API_KEY);
   }, []);
 
-  useEffect(() => {
-    activateAdapty({ sdkKey: 'public_live_fabSVYF8.r7jC2ljNCMWNTyjOy0RR' });
-  }, []);
-
-  useEffect(() => {
-    appsFlyer.onInstallConversionData((installData) => {
-      try {
-        appsFlyer.getAppsFlyerUID((error, uid) => {
-          if (error) {
-            if (__DEV__) {
-              console.error(error);
-            }
-          } else {
-            adapty.updateAttribution(uid, installData, 'AppsFlyer');
-          }
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  }, []);
+  useAdapty();
 
   useEffect(() => {
     Settings.setAdvertiserTrackingEnabled(true);

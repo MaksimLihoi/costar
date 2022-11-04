@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Animated,
   ImageBackground,
@@ -32,6 +32,7 @@ import {
   requestTrackingPermission,
   TrackingStatus,
 } from 'react-native-tracking-transparency';
+import logger from '../../../utils/logger';
 
 const { State: TextInputState } = TextInput;
 
@@ -51,7 +52,7 @@ const NameStep = (props) => {
   const navigation = useNavigation();
   const track = useAnalytics();
 
-  const [trackingStatus, setTrackingStatus] = React.useState<
+  const [trackingStatus, setTrackingStatus] = useState<
     TrackingStatus | '(loading)',
   >('(loading)');
 
@@ -62,14 +63,12 @@ const NameStep = (props) => {
     placeholder: resources.t('ONBOARDING.PLACEHOLDER'),
   });
 
-  const request = React.useCallback(async () => {
+  const request = useCallback(async () => {
     try {
       const status = await requestTrackingPermission();
       setTrackingStatus(status);
     } catch (e) {
-      if (__DEV__) {
-        console.error('Error', e?.toString?.() ?? e);
-      }
+      logger.error('Error', e?.toString?.() ?? e);
     }
   }, []);
 
@@ -78,14 +77,10 @@ const NameStep = (props) => {
     getTrackingStatus()
       .then((status) => {
         setTrackingStatus(status);
-        if (__DEV__) {
-          console.log(trackingStatus);
-        }
+        logger.log(trackingStatus);
       })
       .catch((e) => {
-        if (__DEV__) {
-          console.error('Error', e?.toString?.() ?? e);
-        }
+        logger.error('Error', e?.toString?.() ?? e);
       });
   }, []);
 

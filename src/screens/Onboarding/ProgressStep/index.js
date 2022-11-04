@@ -12,15 +12,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootStackNavigatorRouts } from '../../../variables/navigationRouts';
 import { trackEvent } from '../../../shared/analytics';
 import { Events } from '../../../shared/analytics/events';
+import logger from '../../../utils/logger';
 
 class ProgressStep extends PureComponent {
   seenOnboarding = async () => {
     try {
       await AsyncStorage.setItem('isSeenOnboarding', JSON.stringify(true));
     } catch (error) {
-      if (__DEV__) {
-        console.warn(error);
-      }
+      logger.error(error);
     }
   };
 

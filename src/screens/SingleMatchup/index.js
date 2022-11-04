@@ -31,6 +31,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { Events } from '../../shared/analytics/events';
 import { trackEvent } from '../../shared/analytics';
+import logger from '../../utils/logger';
 
 type State = {
   userBirthDateParts: Array<string>,
@@ -150,7 +151,7 @@ class SingleMatchup extends PureComponent<Props, State> {
       );
       this.setState({ isActivePurchase: status });
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   };
 
