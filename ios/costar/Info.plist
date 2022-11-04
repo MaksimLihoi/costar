@@ -79,6 +79,6 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSUserTrackingUsageDescription</key>
-	<string>requires your permission to track in order to show you more relevant ads</string>
+	<string>requires your permission to track in order to show you more relevant ads.</string>
 </dict>
 </plist>
