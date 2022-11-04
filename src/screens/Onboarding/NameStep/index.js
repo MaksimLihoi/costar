@@ -77,7 +77,7 @@ const NameStep = (props) => {
     getTrackingStatus()
       .then((status) => {
         setTrackingStatus(status);
-        logger.log(trackingStatus);
+        logger.log('Tracking status ', trackingStatus);
       })
       .catch((e) => {
         logger.error('Error', e?.toString?.() ?? e);
