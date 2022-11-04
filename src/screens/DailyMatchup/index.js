@@ -31,6 +31,7 @@ import { NavigationContext } from '@react-navigation/native';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { trackEvent } from '../../shared/analytics';
 import { Events } from '../../shared/analytics/events';
+import logger from '../../utils/logger';
 
 type State = {
   userBirthDateParts: Array<string>,
@@ -158,7 +159,7 @@ class DailyMatchup extends PureComponent<Props, State> {
       );
       this.setState({ isActivePurchase: status });
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   };
 

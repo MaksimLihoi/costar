@@ -18,6 +18,7 @@ import SubscriptionCircleButton from 'src/components/common/SubscriptionCircleBu
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
+import logger from '../../utils/logger';
 
 type Props = {
   womanBirthDate: string,
@@ -82,7 +83,7 @@ class DoubleMatchup extends PureComponent<Props, State> {
       );
       this.setState({ isActivePurchase: status });
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   };
 

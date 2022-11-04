@@ -4,13 +4,14 @@ import { Alert } from 'react-native';
 import RNIap from 'react-native-iap';
 import { MATCHUP_SUBSCRIPTIONS } from './constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import logger from '../../utils/logger';
 
 const initConnection = async () => {
   try {
     const result = await RNIap.initConnection();
     return result;
   } catch (error) {
-    console.log(error);
+    logger.error(error);
   }
 };
 
@@ -92,7 +93,7 @@ const getAvailablePurchases = async () => {
       await AsyncStorage.setItem('isActivePurchase', JSON.stringify(false));
     }
   } catch (error) {
-    console.log(error);
+    logger.error(error);
   }
 };
 

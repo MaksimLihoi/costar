@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Animated,
   ImageBackground,
@@ -27,6 +27,12 @@ import { OnboardingStackNavigatorRouts } from '../../../variables/navigationRout
 import { useNavigation } from '@react-navigation/native';
 import { useAnalytics } from '../../../shared/analytics';
 import { Events } from '../../../shared/analytics/events';
+import {
+  getTrackingStatus,
+  requestTrackingPermission,
+  TrackingStatus,
+} from 'react-native-tracking-transparency';
+import logger from '../../../utils/logger';
 
 const { State: TextInputState } = TextInput;
 
@@ -46,12 +52,37 @@ const NameStep = (props) => {
   const navigation = useNavigation();
   const track = useAnalytics();
 
+  const [trackingStatus, setTrackingStatus] = useState<
+    TrackingStatus | '(loading)',
+  >('(loading)');
+
   const [state, setState] = useState({
     value: '',
     shift: new Animated.Value(0),
     isAnimate: true,
     placeholder: resources.t('ONBOARDING.PLACEHOLDER'),
   });
+
+  const request = useCallback(async () => {
+    try {
+      const status = await requestTrackingPermission();
+      setTrackingStatus(status);
+    } catch (e) {
+      logger.error('Error', e?.toString?.() ?? e);
+    }
+  }, []);
+
+  useEffect(() => {
+    request();
+    getTrackingStatus()
+      .then((status) => {
+        setTrackingStatus(status);
+        logger.log(trackingStatus);
+      })
+      .catch((e) => {
+        logger.error('Error', e?.toString?.() ?? e);
+      });
+  }, []);
 
   const onChangeText = (value) => {
     setState({ ...state, value });
