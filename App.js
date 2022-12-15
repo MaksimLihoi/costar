@@ -45,6 +45,10 @@ const App = () => {
 
   purchasesInteractions.setup();
 
+  useEffect(() => {
+    purchasesInteractions.checkIsTrialAvailable();
+  }, []);
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

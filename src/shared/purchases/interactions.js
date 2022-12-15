@@ -85,6 +85,26 @@ const getPurchaseStatus = async () => {
   }
 };
 
+const checkIsTrialAvailable = async () => {
+  try {
+    const transactions = await Purchases.restoreTransactions();
+
+    if (
+      transactions &&
+      transactions.allPurchasedProductIdentifiers &&
+      transactions.allPurchasedProductIdentifiers.length > 0
+    ) {
+      console.log('no');
+      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
+    } else {
+      console.log('yes');
+      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(true));
+    }
+  } catch (e) {
+    logger.error(e);
+  }
+};
+
 export default {
   setup,
   setDebugLogsEnabled,
@@ -94,4 +114,5 @@ export default {
   getPurchaserInfo,
   getPurchaseStatus,
   setAvailablePurchases,
+  checkIsTrialAvailable,
 };

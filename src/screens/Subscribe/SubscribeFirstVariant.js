@@ -26,6 +26,8 @@ import { Styles2 as styles } from './styles';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { Events } from '../../shared/analytics/events';
 import { trackEvent } from '../../shared/analytics';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import logger from '../../utils/logger';
 
 const SubscriptionEvent = {
   annual: Events.Paywall.YearButtonClick,
@@ -55,6 +57,7 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
   state = {
     selectedSubscription: 'annual',
     isFetching: false,
+    isFreeTrialAvailable: false,
   };
 
   spinValue = new Animated.Value(0);
@@ -64,6 +67,8 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
   animatedValue1 = new Animated.Value(0);
 
   async componentDidMount() {
+    await this.getTrialStatus;
+    console.log(this.state.isFreeTrialAvailable);
     this.animate();
     this.scale();
     this._interval = setInterval(() => {
@@ -76,6 +81,19 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
   componentWillUnmount() {
     clearInterval(this._interval);
   }
+
+  getTrialStatus = async () => {
+    try {
+      await purchasesInteractions.checkIsTrialAvailable();
+
+      const status = await AsyncStorage.getItem('isTrialAvailable').then(
+        (value) => JSON.parse(value),
+      );
+      this.setState({ isFreeTrialAvailable: status });
+    } catch (error) {
+      logger.error(error);
+    }
+  };
 
   scale = () => {
     this.animatedValue1.setValue(0);
@@ -182,10 +200,6 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
       annualPrice,
       monthPurchasePrice,
     } = this.props;
-    const left = this.animatedValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: [-100, 400],
-    });
     const scaleButton = this.animatedValue1.interpolate({
       inputRange: [0, 0.5, 1],
       outputRange: [1, 1.05, 1],
@@ -218,7 +232,9 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
             }}>
             <View style={styles.contentContainer}>
               <Text style={styles.contentTitle}>
-                {resources.t('SUBSCRIPTION.FREE_FULL_ACCESS').toUpperCase()}
+                {this.isFreeTrialAvailable
+                  ? resources.t('SUBSCRIPTION.FREE_FULL_ACCESS').toUpperCase()
+                  : resources.t('SUBSCRIPTION.FULL_ACCESS').toUpperCase()}
               </Text>
               <LinearGradient
                 colors={colors.purpleGradient}
