@@ -43,6 +43,7 @@ class DoubleMatchup extends PureComponent<Props, State> {
     firstDateParts: [],
     secondDateParts: [],
     isActivePurchase: false,
+    isFreeTrialAvailable: false,
     isWomanActive: true,
     isManActive: true,
     purchaseButtonVisible: false,
@@ -77,11 +78,16 @@ class DoubleMatchup extends PureComponent<Props, State> {
   getPurchaseStatus = async () => {
     try {
       await purchasesInteractions.getPurchaseStatus();
+      await purchasesInteractions.checkIsTrialAvailable();
 
       const status = await AsyncStorage.getItem('isActivePurchase').then(
         (value) => JSON.parse(value),
       );
+      const trialStatus = await AsyncStorage.getItem('isTrialAvailable').then(
+        (value) => JSON.parse(value),
+      );
       this.setState({ isActivePurchase: status });
+      this.setState({ isFreeTrialAvailable: trialStatus });
     } catch (error) {
       logger.error(error);
     }
@@ -134,6 +140,7 @@ class DoubleMatchup extends PureComponent<Props, State> {
       firstDateParts,
       secondDateParts,
       isActivePurchase,
+      isFreeTrialAvailable,
       isWomanActive,
       isManActive,
     } = this.state;
@@ -143,7 +150,7 @@ class DoubleMatchup extends PureComponent<Props, State> {
       <View style={styles.container}>
         <ImageBackground source={img.gradient} style={styles.background}>
           <View style={styles.viewContainer}>
-            {!isActivePurchase && (
+            {!isActivePurchase && isFreeTrialAvailable && (
               <SubscriptionCircleButton refresh={this.getPurchaseStatus} />
             )}
             <ScrollView>
