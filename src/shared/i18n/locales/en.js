@@ -110,6 +110,7 @@ export default {
     WEEK: 'Week',
     ONE_MONTH: '1 Month',
     FREE_FULL_ACCESS: '3 Days Free\n Full Access!',
+    FULL_ACCESS: 'Full Access!',
     THREE_DAY_TRIAL: '3 days trial',
     FREE_TRIAL_DESCRIPTION: 'Free trial period of 3 days then 7.99 $/week',
     AUTO_RENEWABLE_DESCRIPTION:

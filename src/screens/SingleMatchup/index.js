@@ -31,6 +31,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { Events } from '../../shared/analytics/events';
 import { trackEvent } from '../../shared/analytics';
+import logger from '../../utils/logger';
 
 type State = {
   userBirthDateParts: Array<string>,
@@ -68,6 +69,7 @@ class SingleMatchup extends PureComponent<Props, State> {
   state = {
     userBirthDateParts: [],
     isActivePurchase: false,
+    isFreeTrialAvailable: false,
     shouldShowFixedButton: false,
     section: 'skills',
     purchaseButtonVisible: false,
@@ -144,13 +146,18 @@ class SingleMatchup extends PureComponent<Props, State> {
   getPurchaseStatus = async () => {
     try {
       await purchasesInteractions.getPurchaseStatus();
+      await purchasesInteractions.checkIsTrialAvailable();
 
       const status = await AsyncStorage.getItem('isActivePurchase').then(
         (value) => JSON.parse(value),
       );
+      const trialStatus = await AsyncStorage.getItem('isTrialAvailable').then(
+        (value) => JSON.parse(value),
+      );
       this.setState({ isActivePurchase: status });
+      this.setState({ isFreeTrialAvailable: trialStatus });
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   };
 
@@ -238,6 +245,7 @@ class SingleMatchup extends PureComponent<Props, State> {
     const {
       userBirthDateParts,
       isActivePurchase,
+      isFreeTrialAvailable,
       shouldShowFixedButton,
       section,
       purchaseButtonVisible,
@@ -265,7 +273,7 @@ class SingleMatchup extends PureComponent<Props, State> {
                                 refresh={this.getPurchaseStatus}
                             />
                         )} */}
-            {!isActivePurchase && (
+            {!isActivePurchase && isFreeTrialAvailable && (
               <SubscriptionBigButton
                 buttonBottom={buttonBottom}
                 refresh={this.getPurchaseStatus}

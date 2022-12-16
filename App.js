@@ -11,6 +11,8 @@ import { AMPLITUDE_API_KEY } from './src/shared/analytics';
 import { init } from '@amplitude/analytics-react-native';
 import { Settings } from 'react-native-fbsdk-next';
 import appsFlyer from 'react-native-appsflyer';
+import { useAdapty } from './src/shared/hooks/useAdapty';
+import logger from './src/utils/logger';
 
 const persistor = persistStore(store);
 
@@ -21,10 +23,10 @@ appsFlyer.initSdk(
     appId: '1464015994',
   },
   (result) => {
-    console.log('result', result);
+    logger.log('result', result);
   },
   (error) => {
-    console.error('error', error);
+    logger.error('error', error);
   },
 );
 
@@ -35,11 +37,17 @@ const App = () => {
     init(AMPLITUDE_API_KEY);
   }, []);
 
+  useAdapty();
+
   useEffect(() => {
     Settings.setAdvertiserTrackingEnabled(true);
   }, []);
 
   purchasesInteractions.setup();
+
+  useEffect(() => {
+    purchasesInteractions.checkIsTrialAvailable();
+  }, []);
 
   return (
     <Provider store={store}>

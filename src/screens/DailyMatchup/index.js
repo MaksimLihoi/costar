@@ -31,6 +31,7 @@ import { NavigationContext } from '@react-navigation/native';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { trackEvent } from '../../shared/analytics';
 import { Events } from '../../shared/analytics/events';
+import logger from '../../utils/logger';
 
 type State = {
   userBirthDateParts: Array<string>,
@@ -74,6 +75,7 @@ class DailyMatchup extends PureComponent<Props, State> {
   state = {
     userBirthDateParts: [],
     isActivePurchase: false,
+    isFreeTrialAvailable: false,
     shouldShowFixedButton: false,
     section: 'today',
     purchaseButtonVisible: false,
@@ -152,13 +154,18 @@ class DailyMatchup extends PureComponent<Props, State> {
   getPurchaseStatus = async () => {
     try {
       await purchasesInteractions.getPurchaseStatus();
+      await purchasesInteractions.checkIsTrialAvailable();
 
       const status = await AsyncStorage.getItem('isActivePurchase').then(
         (value) => JSON.parse(value),
       );
+      const trialStatus = await AsyncStorage.getItem('isTrialAvailable').then(
+        (value) => JSON.parse(value),
+      );
       this.setState({ isActivePurchase: status });
+      this.setState({ isFreeTrialAvailable: trialStatus });
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   };
 
@@ -197,6 +204,7 @@ class DailyMatchup extends PureComponent<Props, State> {
     const {
       userBirthDateParts,
       isActivePurchase,
+      isFreeTrialAvailable,
       shouldShowFixedButton,
       section,
       purchaseButtonVisible,
@@ -234,7 +242,7 @@ class DailyMatchup extends PureComponent<Props, State> {
                                 refresh={this.getPurchaseStatus}
                             />
                         )} */}
-            {!isActivePurchase && (
+            {!isActivePurchase && isFreeTrialAvailable && (
               <SubscriptionBigButton
                 buttonBottom={buttonBottom}
                 refresh={this.getPurchaseStatus}

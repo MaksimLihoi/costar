@@ -102,6 +102,7 @@ export default {
     MOST_POPULAR: '最受歡迎',
     START_FREE: '免费开始',
     FREE_FULL_ACCESS: '3天免费完全访问！',
+    FULL_ACCESS: '完全访问！',
     START_FREE_TRIAL: '开始免费试用',
     YEAR: '年',
     WEEK: '周',
