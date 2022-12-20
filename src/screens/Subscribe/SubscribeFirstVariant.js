@@ -8,6 +8,7 @@ import {
   Easing,
   Image,
   ImageBackground,
+  SafeAreaView,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -197,183 +198,185 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
       <ImageBackground
         source={img.onboarding.subscribeBackground}
         style={styles.background}>
-        <View style={styles.container}>
-          <View style={styles.animateContainer}>
-            <TouchableOpacity onPress={this.closeScreen} style={styles.close}>
-              <Image
-                style={styles.closeIcon}
-                source={img.onboarding.closeIcon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={this.restorePurchase}
-              style={styles.restoreContainer}>
-              <Text style={styles.restore}>
-                {resources.t('SUBSCRIPTION.RESTORE')}
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          <Animated.View
-            style={{
-              ...styles.content,
-              opacity: this.spinValue,
-            }}>
-            <View style={styles.contentContainer}>
-              <Text style={styles.contentTitle}>
-                {this.state.isFreeTrialAvailable
-                  ? resources.t('SUBSCRIPTION.FREE_FULL_ACCESS').toUpperCase()
-                  : resources.t('SUBSCRIPTION.FULL_ACCESS').toUpperCase()}
-              </Text>
-              <LinearGradient
-                colors={colors.purpleGradient}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.topCard}>
-                <Image source={img.onboarding.stars} style={styles.stars} />
-                <Text style={styles.topCardDescription}>
-                  {reviewConfiguration[selectedAnswer].review}
-                </Text>
-                <Text style={styles.topCardAuthor}>
-                  {reviewConfiguration[selectedAnswer].author}
-                </Text>
-              </LinearGradient>
-              <View style={styles.cardsContainer}>
-                <TouchableOpacity
-                  onPress={() => this.handleCardPress('annual')}>
-                  <View style={styles.cardLabelContainer}>
-                    <View style={styles.cardLabel}>
-                      <Text style={styles.cardLabelText}>
-                        {resources.t('SUBSCRIPTION.SAVE_80')}
-                      </Text>
-                    </View>
-                  </View>
-                  <LinearGradient
-                    colors={
-                      selectedSubscription === 'annual'
-                        ? colors.purpleGradient
-                        : colors.shadowPurpleGradient
-                    }
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                    style={[
-                      styles.card,
-                      selectedSubscription === 'annual' &&
-                        styles.activeSubscription,
-                    ]}>
-                    <View style={styles.topTextContainer}>
-                      <Text style={styles.cardTopText}>
-                        {resources.t('SUBSCRIPTION.YEAR').toUpperCase()}
-                      </Text>
-                    </View>
-                    <Text style={styles.buttonText}>
-                      {`${annualPurchasePrice} ${resources.t(
-                        'SUBSCRIPTION.BILLED_ANNUALLY',
-                      )}`}
-                    </Text>
-                    <Text style={styles.smallFontText}>
-                      {`${getMonthPrice(
-                        annualPurchasePrice,
-                        annualPrice,
-                      )}/month`}
-                    </Text>
-                  </LinearGradient>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => this.handleCardPress('monthly')}>
-                  <LinearGradient
-                    colors={
-                      selectedSubscription === 'monthly'
-                        ? colors.purpleGradient
-                        : colors.shadowPurpleGradient
-                    }
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                    style={[
-                      styles.card,
-                      selectedSubscription === 'monthly' &&
-                        styles.activeSubscription,
-                    ]}>
-                    <View style={styles.topTextContainer}>
-                      <Text style={styles.cardTopText}>
-                        {resources
-                          .t('SUBSCRIPTION.BILLED_MONTHLY')
-                          .toUpperCase()}
-                      </Text>
-                    </View>
-                    <Text style={styles.buttonText}>
-                      {`${monthPurchasePrice} ${resources.t(
-                        'SUBSCRIPTION.BILLED_MONTHLY',
-                      )}`}
-                    </Text>
-                    <Text style={styles.smallFontText}>
-                      {`${monthPurchasePrice}/month`}
-                    </Text>
-                  </LinearGradient>
-                </TouchableOpacity>
-              </View>
-              <TouchableOpacity onPress={this.purchasePackage}>
-                <Animated.View
-                  style={[
-                    styles.continueContainer,
-                    {
-                      transform: [{ scale: scaleButton }],
-                    },
-                  ]}>
-                  <LinearGradient
-                    colors={colors.yellowGradient}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                    style={
-                      isFetching
-                        ? styles.spinnerButtonContainer
-                        : styles.continueButtonContainer
-                    }>
-                    <Animated.View
-                      style={{
-                        transform: [{ rotate: '45deg' }],
-                        /*left,*/
-                        position: 'absolute',
-                        opacity: 0.5,
-                        marginTop: -30,
-                        height: 120,
-                        width: 40,
-                        backgroundColor: 'white',
-                      }}
-                    />
-                    {!isFetching ? (
-                      <>
-                        <Text style={styles.buttonText}>
-                          {resources.t('SUBSCRIPTION.CONTINUE').toUpperCase()}
-                        </Text>
-                        <Image
-                          style={styles.continueArrow}
-                          source={img.iconArrow}
-                        />
-                      </>
-                    ) : (
-                      <ActivityIndicator size='large' color={colors.white} />
-                    )}
-                  </LinearGradient>
-                </Animated.View>
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={styles.container}>
+            <View style={styles.animateContainer}>
+              <TouchableOpacity onPress={this.closeScreen} style={styles.close}>
+                <Image
+                  style={styles.closeIcon}
+                  source={img.onboarding.closeIcon}
+                />
               </TouchableOpacity>
-              <View>
-                <View style={styles.privacyLinks}>
-                  <TouchableWithoutFeedback onPress={this.openTerms}>
-                    <Text style={styles.privacyLink}>
-                      {resources.t('SUBSCRIPTION.TERMS_OF_SERVICE')}
-                    </Text>
-                  </TouchableWithoutFeedback>
-                  <TouchableWithoutFeedback onPress={this.openPrivacy}>
-                    <Text style={styles.privacyLink}>
-                      {resources.t('SUBSCRIPTION.PRIVACY_POLICY')}
-                    </Text>
-                  </TouchableWithoutFeedback>
+              <TouchableOpacity
+                onPress={this.restorePurchase}
+                style={styles.restoreContainer}>
+                <Text style={styles.restore}>
+                  {resources.t('SUBSCRIPTION.RESTORE')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+            <Animated.View
+              style={{
+                ...styles.content,
+                opacity: this.spinValue,
+              }}>
+              <View style={styles.contentContainer}>
+                <Text style={styles.contentTitle}>
+                  {this.state.isFreeTrialAvailable
+                    ? resources.t('SUBSCRIPTION.FREE_FULL_ACCESS').toUpperCase()
+                    : resources.t('SUBSCRIPTION.FULL_ACCESS').toUpperCase()}
+                </Text>
+                <LinearGradient
+                  colors={colors.purpleGradient}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  style={styles.topCard}>
+                  <Image source={img.onboarding.stars} style={styles.stars} />
+                  <Text style={styles.topCardDescription}>
+                    {reviewConfiguration[selectedAnswer].review}
+                  </Text>
+                  <Text style={styles.topCardAuthor}>
+                    {reviewConfiguration[selectedAnswer].author}
+                  </Text>
+                </LinearGradient>
+                <View style={styles.cardsContainer}>
+                  <TouchableOpacity
+                    onPress={() => this.handleCardPress('annual')}>
+                    <View style={styles.cardLabelContainer}>
+                      <View style={styles.cardLabel}>
+                        <Text style={styles.cardLabelText}>
+                          {resources.t('SUBSCRIPTION.SAVE_80')}
+                        </Text>
+                      </View>
+                    </View>
+                    <LinearGradient
+                      colors={
+                        selectedSubscription === 'annual'
+                          ? colors.purpleGradient
+                          : colors.shadowPurpleGradient
+                      }
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 0 }}
+                      style={[
+                        styles.card,
+                        selectedSubscription === 'annual' &&
+                          styles.activeSubscription,
+                      ]}>
+                      <View style={styles.topTextContainer}>
+                        <Text style={styles.cardTopText}>
+                          {resources.t('SUBSCRIPTION.YEAR').toUpperCase()}
+                        </Text>
+                      </View>
+                      <Text style={styles.buttonText}>
+                        {`${annualPurchasePrice} ${resources.t(
+                          'SUBSCRIPTION.BILLED_ANNUALLY',
+                        )}`}
+                      </Text>
+                      <Text style={styles.smallFontText}>
+                        {`${getMonthPrice(
+                          annualPurchasePrice,
+                          annualPrice,
+                        )}/month`}
+                      </Text>
+                    </LinearGradient>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => this.handleCardPress('monthly')}>
+                    <LinearGradient
+                      colors={
+                        selectedSubscription === 'monthly'
+                          ? colors.purpleGradient
+                          : colors.shadowPurpleGradient
+                      }
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 0 }}
+                      style={[
+                        styles.card,
+                        selectedSubscription === 'monthly' &&
+                          styles.activeSubscription,
+                      ]}>
+                      <View style={styles.topTextContainer}>
+                        <Text style={styles.cardTopText}>
+                          {resources
+                            .t('SUBSCRIPTION.BILLED_MONTHLY')
+                            .toUpperCase()}
+                        </Text>
+                      </View>
+                      <Text style={styles.buttonText}>
+                        {`${monthPurchasePrice} ${resources.t(
+                          'SUBSCRIPTION.BILLED_MONTHLY',
+                        )}`}
+                      </Text>
+                      <Text style={styles.smallFontText}>
+                        {`${monthPurchasePrice}/month`}
+                      </Text>
+                    </LinearGradient>
+                  </TouchableOpacity>
+                </View>
+                <TouchableOpacity onPress={this.purchasePackage}>
+                  <Animated.View
+                    style={[
+                      styles.continueContainer,
+                      {
+                        transform: [{ scale: scaleButton }],
+                      },
+                    ]}>
+                    <LinearGradient
+                      colors={colors.yellowGradient}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 0 }}
+                      style={
+                        isFetching
+                          ? styles.spinnerButtonContainer
+                          : styles.continueButtonContainer
+                      }>
+                      <Animated.View
+                        style={{
+                          transform: [{ rotate: '45deg' }],
+                          /*left,*/
+                          position: 'absolute',
+                          opacity: 0.5,
+                          marginTop: -30,
+                          height: 120,
+                          width: 40,
+                          backgroundColor: 'white',
+                        }}
+                      />
+                      {!isFetching ? (
+                        <>
+                          <Text style={styles.buttonText}>
+                            {resources.t('SUBSCRIPTION.CONTINUE').toUpperCase()}
+                          </Text>
+                          <Image
+                            style={styles.continueArrow}
+                            source={img.iconArrow}
+                          />
+                        </>
+                      ) : (
+                        <ActivityIndicator size='large' color={colors.white} />
+                      )}
+                    </LinearGradient>
+                  </Animated.View>
+                </TouchableOpacity>
+                <View>
+                  <View style={styles.privacyLinks}>
+                    <TouchableWithoutFeedback onPress={this.openTerms}>
+                      <Text style={styles.privacyLink}>
+                        {resources.t('SUBSCRIPTION.TERMS_OF_SERVICE')}
+                      </Text>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={this.openPrivacy}>
+                      <Text style={styles.privacyLink}>
+                        {resources.t('SUBSCRIPTION.PRIVACY_POLICY')}
+                      </Text>
+                    </TouchableWithoutFeedback>
+                  </View>
                 </View>
               </View>
-            </View>
-          </Animated.View>
-        </View>
+            </Animated.View>
+          </View>
+        </SafeAreaView>
       </ImageBackground>
     );
   }
