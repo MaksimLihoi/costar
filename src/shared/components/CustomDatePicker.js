@@ -48,16 +48,9 @@ const CustomDatePicker = ({
               </Text>
             </TouchableOpacity>
           </View>
-          {/*<DateTimePicker
-            maximumDate={new Date()}
-            value={value}
-            display='spinner'
-            locale={resources.t('PREFERENCES.LANGUAGE')}
-            onChange={handleOnChange}
-            timeZoneOffsetInMinutes={new Date().getTimezoneOffset() * -1}
-          />*/}
           <View style={styles.dataTimeContainer}>
             <DatePicker
+              theme='light'
               date={value}
               maximumDate={new Date()}
               modal={false}
