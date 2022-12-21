@@ -146,15 +146,15 @@ class SingleMatchup extends PureComponent<Props, State> {
   getPurchaseStatus = async () => {
     try {
       await purchasesInteractions.getPurchaseStatus();
-      await purchasesInteractions.checkIsTrialAvailable();
-
       const status = await AsyncStorage.getItem('isActivePurchase').then(
         (value) => JSON.parse(value),
       );
+      this.setState({ isActivePurchase: status });
+
+      await purchasesInteractions.checkIsTrialAvailable();
       const trialStatus = await AsyncStorage.getItem('isTrialAvailable').then(
         (value) => JSON.parse(value),
       );
-      this.setState({ isActivePurchase: status });
       this.setState({ isFreeTrialAvailable: trialStatus });
     } catch (error) {
       logger.error(error);

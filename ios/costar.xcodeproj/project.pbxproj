@@ -25,9 +25,9 @@
 		92845467377A4CA5BE7E3C89 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B964DC85DD9040F4A7E0C8C3 /* Montserrat-Regular.ttf */; };
 		9A9FF40BD683400FBE8C1D7F /* SFProDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D720D4960E44382B59EE812 /* SFProDisplay-Semibold.ttf */; };
 		A13AA71A23184CCE884D032C /* SFUIDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 612945EE9F2B471DABB7ED3C /* SFUIDisplay-Semibold.ttf */; };
-		A792E7A828D075BB00DFF2AB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A792E7A728D075BB00DFF2AB /* StoreKit.framework */; };
 		BD2CF77FD4354B8CBF6128C8 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4247A16F3134A9290D50DBE /* Montserrat-ExtraLight.ttf */; };
 		CD644E15AD0F44D1BB8D63C0 /* SFProDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE112E5427DA4680B885B12F /* SFProDisplay-Medium.ttf */; };
+		D13AECB429536A97008DA883 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A792E7A728D075BB00DFF2AB /* StoreKit.framework */; };
 		EE1705B9A250471FB7B82EAB /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7F68404D6474B05A56988E9 /* Montserrat-Bold.ttf */; };
 		FAF4A088127641CEB961797C /* SFProDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F2305C1F5944AF09FE087D2 /* SFProDisplay-Regular.ttf */; };
 /* End PBXBuildFile section */
@@ -73,7 +73,9 @@
 		BE112E5427DA4680B885B12F /* SFProDisplay-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProDisplay-Medium.ttf"; path = "../assets/fonts/SFProDisplay-Medium.ttf"; sourceTree = "<group>"; };
 		BF1B610642BF4473A775BECA /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		C28E4D04A0954C109D060F38 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		D10A5D48295370FB000AA177 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		D11CBA422915528100AB42F1 /* costarDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = costarDebug.entitlements; path = costar/costarDebug.entitlements; sourceTree = "<group>"; };
+		D13AECB729536AF8008DA883 /* Costar.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Costar.storekit; sourceTree = "<group>"; };
 		D8BBB95D1B62432492E318E8 /* SFUIDisplay-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Light.ttf"; path = "../assets/fonts/SFUIDisplay-Light.ttf"; sourceTree = "<group>"; };
 		E4247A16F3134A9290D50DBE /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraLight.ttf"; path = "../assets/fonts/Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -92,8 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D13AECB429536A97008DA883 /* StoreKit.framework in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-costar.a in Frameworks */,
-				A792E7A828D075BB00DFF2AB /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +176,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				D13AECB729536AF8008DA883 /* Costar.storekit */,
+				D10A5D48295370FB000AA177 /* StoreKitTestCertificate.cer */,
 				13B07FAE1A68108700A75B9A /* costar */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* costarTests */,
