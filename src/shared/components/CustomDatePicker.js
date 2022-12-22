@@ -2,7 +2,7 @@
 
 import React, { useCallback, useState } from 'react';
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePicker from 'react-native-date-picker';
 
 import { colors, fonts } from 'src/variables';
 import { resources } from '../i18n/configuration';
@@ -13,7 +13,7 @@ type Props = {
   onCancelPressed(): void,
 };
 
-const DatePicker = ({
+const CustomDatePicker = ({
   currentDate,
   onConfirmPressed,
   onCancelPressed,
@@ -24,7 +24,7 @@ const DatePicker = ({
     () => onConfirmPressed(value),
     [value],
   );
-  const handleOnChange = useCallback((event, date) => setValue(date), []);
+  const handleOnChange = useCallback((_, date) => setValue(date), []);
 
   return (
     <Modal animationType='fade' transparent visible>
@@ -48,21 +48,25 @@ const DatePicker = ({
               </Text>
             </TouchableOpacity>
           </View>
-          <DateTimePicker
-            maximumDate={new Date()}
-            value={value}
-            display='spinner'
-            locale={resources.t('PREFERENCES.LANGUAGE')}
-            onChange={handleOnChange}
-            timeZoneOffsetInMinutes={new Date().getTimezoneOffset() * -1}
-          />
+          <View style={styles.dataTimeContainer}>
+            <DatePicker
+              theme='light'
+              date={value}
+              maximumDate={new Date()}
+              modal={false}
+              onDateChange={setValue}
+              timeZoneOffsetInMinutes={new Date().getTimezoneOffset() * -1}
+              locale={resources.t('PREFERENCES.LANGUAGE')}
+              mode={'date'}
+            />
+          </View>
         </View>
       </View>
     </Modal>
   );
 };
 
-export default React.memo<Props>(DatePicker);
+export default React.memo<Props>(CustomDatePicker);
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -101,4 +105,5 @@ const styles = StyleSheet.create({
     color: colors.darkViolet,
     fontSize: 17,
   },
+  dataTimeContainer: { width: '100%', alignItems: 'center' },
 });

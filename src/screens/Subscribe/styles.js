@@ -415,12 +415,10 @@ const Styles2 = StyleSheet.create({
   background: {
     flex: 1,
   },
-  container: {
-    ...ifIphoneX({ paddingTop: 50, flex: 1 }, { paddingTop: 20, flex: 1 }),
-  },
+  container: { paddingTop: 20, flex: 1 },
+
   contentContainer: {
     flex: 1,
-    ...ifIphoneX({ paddingTop: 10 }, { paddingTop: 0 }),
     alignItems: 'center',
   },
   content: {
@@ -498,7 +496,7 @@ const Styles2 = StyleSheet.create({
     width: wp('93%'),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    ...ifIphoneX({ paddingTop: 80 }, {}),
+    paddingVertical: 20,
   },
   card: {
     ...ifIphoneX({ height: 180 }, { height: 135 }),
