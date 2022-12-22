@@ -157,13 +157,18 @@ class DailyMatchup extends PureComponent<Props, State> {
       const status = await AsyncStorage.getItem('isActivePurchase').then(
         (value) => JSON.parse(value),
       );
-      this.setState({ isActivePurchase: status });
+      this.setState({
+        isActivePurchase: status,
+        isFreeTrialAvailable: !status,
+      });
 
-      await purchasesInteractions.checkIsTrialAvailable();
-      const trialStatus = await AsyncStorage.getItem('isTrialAvailable').then(
-        (value) => JSON.parse(value),
-      );
-      this.setState({ isFreeTrialAvailable: trialStatus });
+      if (!status) {
+        await purchasesInteractions.checkIsTrialAvailable();
+        const trialStatus = await AsyncStorage.getItem('isTrialAvailable').then(
+          (value) => JSON.parse(value),
+        );
+        this.setState({ isFreeTrialAvailable: trialStatus });
+      }
     } catch (error) {
       logger.error(error);
     }

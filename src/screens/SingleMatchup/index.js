@@ -100,12 +100,13 @@ class SingleMatchup extends PureComponent<Props, State> {
       dispatch(getSkills(date));
     }
     dispatch(getFeedbackLinks());
+    await this.getPurchaseStatus();
     const { current } = await purchasesInteractions.getOfferings();
     if (current && current.availablePackages) {
       dispatch(setAvailablePurchases(current.availablePackages));
     }
+
     await this.setPermissionAppStore();
-    await this.getPurchaseStatus();
 
     const { navigation } = this.props;
     navigation.addListener('focus', this.onDidFocus);
@@ -149,13 +150,18 @@ class SingleMatchup extends PureComponent<Props, State> {
       const status = await AsyncStorage.getItem('isActivePurchase').then(
         (value) => JSON.parse(value),
       );
-      this.setState({ isActivePurchase: status });
+      this.setState({
+        isActivePurchase: status,
+        isFreeTrialAvailable: !status,
+      });
 
-      await purchasesInteractions.checkIsTrialAvailable();
-      const trialStatus = await AsyncStorage.getItem('isTrialAvailable').then(
-        (value) => JSON.parse(value),
-      );
-      this.setState({ isFreeTrialAvailable: trialStatus });
+      if (!status) {
+        await purchasesInteractions.checkIsTrialAvailable();
+        const trialStatus = await AsyncStorage.getItem('isTrialAvailable').then(
+          (value) => JSON.parse(value),
+        );
+        this.setState({ isFreeTrialAvailable: trialStatus });
+      }
     } catch (error) {
       logger.error(error);
     }
