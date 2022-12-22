@@ -56,6 +56,15 @@ export const setAvailablePurchases = (
   availablePurchases,
 });
 
+export const setIsActivePurchase = (isActivePurchase: boolean) => ({
+  type: types.SET_IS_ACTIVE_PURCHASE,
+  isActivePurchase,
+});
+
+export const getIsActivePurchase = () => ({
+  type: types.GET_IS_ACTIVE_PURCHASE,
+});
+
 export const setRemoteConfig = (config: string) => ({
   type: types.SET_REMOTE_CONFIG,
   config,

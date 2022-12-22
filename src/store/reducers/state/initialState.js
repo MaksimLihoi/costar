@@ -15,6 +15,7 @@ const initialState = {
   availablePurchases: [],
   userName: '',
   subscribeScreen: '',
+  isActivePurchase: false,
 };
 
 export default initialState;

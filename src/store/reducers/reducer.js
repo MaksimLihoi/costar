@@ -98,6 +98,10 @@ export const reducer = (state = initialState, action) => {
       return { ...state, subscribeScreen: action.config };
     case types.SET_USER_NAME:
       return { ...state, userName: action.name };
+    case types.SET_IS_ACTIVE_PURCHASE:
+      return { ...state, isActivePurchase: action.isActivePurchase };
+    case types.GET_IS_ACTIVE_PURCHASE:
+      return state.isActivePurchase;
     default:
       return state;
   }
