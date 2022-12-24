@@ -7,12 +7,7 @@ import { connect } from 'react-redux';
 import { ScrollIntoView, wrapScrollView } from 'react-native-scroll-into-view';
 import SwitchSelector from 'react-native-switch-selector';
 
-import {
-  FixedButton,
-  Header,
-  Prognosis,
-  SubscriptionBigButton,
-} from '../../components';
+import { FixedButton, Header, Prognosis } from '../../components';
 import { resources } from '../../shared';
 import { getJoinedDate } from '../../helpers';
 import purchasesInteractions from '../../shared/purchases/interactions';
@@ -247,12 +242,12 @@ class DailyMatchup extends PureComponent<Props, State> {
                                 refresh={this.getPurchaseStatus}
                             />
                         )} */}
-            {!isActivePurchase && isFreeTrialAvailable && (
+            {/*{!isActivePurchase && isFreeTrialAvailable && (
               <SubscriptionBigButton
                 buttonBottom={buttonBottom}
                 refresh={this.getPurchaseStatus}
               />
-            )}
+            )}*/}
             <CustomScrollView
               ref={(ref) => {
                 this.scrollView = ref;
