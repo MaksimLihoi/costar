@@ -356,7 +356,11 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
                       {!isFetching ? (
                         <>
                           <Text style={styles.buttonText}>
-                            {resources.t('SUBSCRIPTION.CONTINUE').toUpperCase()}
+                            {this.state.isFreeTrialAvailable
+                              ? resources.t('SUBSCRIPTION.CONTINUE_TRIAL')
+                              : resources
+                                  .t('SUBSCRIPTION.CONTINUE')
+                                  .toUpperCase()}
                           </Text>
                           <Image
                             style={styles.continueArrow}

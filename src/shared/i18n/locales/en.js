@@ -105,6 +105,7 @@ export default {
     START_FREE_TRIAL: 'Start free trial',
     START_FREE: 'Start free',
     CONTINUE: 'Continue',
+    CONTINUE_TRIAL: 'TRY NOW FOR FREE',
     TWELVE_MONTHS: '12 Months',
     YEAR: 'Year',
     WEEK: 'Week',
