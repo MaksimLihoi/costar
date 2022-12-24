@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 import { scale } from 'react-native-size-matters';
 import { fs, hp, wp } from '../../helpers';
@@ -415,7 +415,7 @@ const Styles2 = StyleSheet.create({
   background: {
     flex: 1,
   },
-  container: { paddingTop: 20, flex: 1 },
+  container: { paddingTop: 10, paddingBottom: 20, flex: 1 },
 
   contentContainer: {
     flex: 1,
@@ -504,7 +504,7 @@ const Styles2 = StyleSheet.create({
     paddingVertical: 20,
   },
   card: {
-    height: 180,
+    height: Dimensions.get('screen').height < 700 ? 135 : 180,
     width: wp('43%'),
     justifyContent: 'space-between',
     alignItems: 'center',

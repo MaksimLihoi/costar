@@ -9,6 +9,7 @@ import {
   Image,
   ImageBackground,
   SafeAreaView,
+  ScrollView,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -193,23 +194,22 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
         source={img.onboarding.subscribeBackground}
         style={styles.background}>
         <SafeAreaView style={{ flex: 1 }}>
-          <View style={styles.container}>
-            <View style={styles.animateContainer}>
-              <TouchableOpacity onPress={this.closeScreen} style={styles.close}>
-                <Image
-                  style={styles.closeIcon}
-                  source={img.onboarding.closeIcon}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={this.restorePurchase}
-                style={styles.restoreContainer}>
-                <Text style={styles.restore}>
-                  {resources.t('SUBSCRIPTION.RESTORE')}
-                </Text>
-              </TouchableOpacity>
-            </View>
-
+          <View style={styles.animateContainer}>
+            <TouchableOpacity onPress={this.closeScreen} style={styles.close}>
+              <Image
+                style={styles.closeIcon}
+                source={img.onboarding.closeIcon}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={this.restorePurchase}
+              style={styles.restoreContainer}>
+              <Text style={styles.restore}>
+                {resources.t('SUBSCRIPTION.RESTORE')}
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView style={styles.container}>
             <Animated.View
               style={{
                 ...styles.content,
@@ -393,7 +393,7 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
                 </View>
               </View>
             </Animated.View>
-          </View>
+          </ScrollView>
         </SafeAreaView>
       </ImageBackground>
     );
