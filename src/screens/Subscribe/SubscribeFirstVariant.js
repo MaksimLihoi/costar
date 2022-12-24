@@ -321,7 +321,11 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
                 <Text
                   style={[styles.privacyLink, { textDecorationLine: 'none' }]}>
                   {this.state.isFreeTrialAvailable
-                    ? resources.t('SUBSCRIPTION.CANCEL_ANYTIME_FREE_TRIAL')
+                    ? `3 Days free. Then ${
+                        selectedSubscription === 'annual'
+                          ? annualPurchasePrice + '/year'
+                          : monthPurchasePrice + '/month'
+                      }. Cancel anytime`
                     : resources.t('SUBSCRIPTION.CANCEL_ANYTIME')}
                 </Text>
                 <TouchableOpacity onPress={this.purchasePackage}>
