@@ -138,6 +138,8 @@ export default {
     AGREEMENTS:
       'End User License Agreement & Privacy Policy. No commitment. Cancel anytime. You can cancel your subscription or free trial anytime by cancelling your subscription through your iTunes account settings, or it will automatically renew. This must be done 24 hours before the end of the free trial or any subscription period to avoid being charged. Subscription with a free trial period will automatically renew to a paid subscription. Please note: any unused portion of a free trial period (if offered) will be forfeited when you purchase a premium subscription during the free trial period. Subscription payments will be charged to your iTunes account at confirmation of your purchase and upon commencement of each renewal term. Continuing to use the application, I agree with Terms of service and Privacy Policy.',
     TRY_FREE: 'Try Free!',
+    CANCEL_ANYTIME: 'Cancel anytime',
+    CANCEL_ANYTIME_FREE_TRIAL: '3 Days free. Then xx/year. Cancel anytime',
   },
   PREFERENCES: {
     LANGUAGE: 'en-US',

@@ -22,7 +22,6 @@ import purchasesInteractions from 'src/shared/purchases/interactions';
 import { getMonthPrice } from 'src/helpers';
 import { resources } from 'src/shared/i18n/configuration';
 import { colors } from 'src/variables';
-import reviewConfiguration from './reviewConfiguration';
 import { Styles2 as styles } from './styles';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { Events } from '../../shared/analytics/events';
@@ -184,12 +183,7 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
 
   render() {
     const { selectedSubscription, isFetching } = this.state;
-    const {
-      selectedAnswer,
-      annualPurchasePrice,
-      annualPrice,
-      monthPurchasePrice,
-    } = this.props;
+    const { annualPurchasePrice, annualPrice, monthPurchasePrice } = this.props;
     const scaleButton = this.animatedValue1.interpolate({
       inputRange: [0, 0.5, 1],
       outputRange: [1, 1.05, 1],
@@ -232,24 +226,32 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 0 }}
                   style={styles.topCard}>
-                  <Image source={img.onboarding.stars} style={styles.stars} />
-                  <Text style={styles.topCardDescription}>
-                    {reviewConfiguration[selectedAnswer].review}
+                  <Text style={[styles.cardTopText, { fontSize: 24 }]}>
+                    10+ Metrics
                   </Text>
-                  <Text style={styles.topCardAuthor}>
-                    {reviewConfiguration[selectedAnswer].author}
-                  </Text>
+                  <View style={styles.topCardDescriptionContainer}>
+                    <Text style={styles.topCardDescription}>
+                      {
+                        '– Daily Numerology\n– Job/ Business\n– Love\n– Self Development\n– Luck'
+                      }
+                    </Text>
+                    <Text style={styles.topCardDescription}>
+                      {
+                        '– Health\n– Vital energy\n– Compatibility\n– Prosperity\n– And more'
+                      }
+                    </Text>
+                  </View>
                 </LinearGradient>
                 <View style={styles.cardsContainer}>
                   <TouchableOpacity
                     onPress={() => this.handleCardPress('annual')}>
-                    <View style={styles.cardLabelContainer}>
+                    {/*<View style={styles.cardLabelContainer}>
                       <View style={styles.cardLabel}>
                         <Text style={styles.cardLabelText}>
                           {resources.t('SUBSCRIPTION.SAVE_80')}
                         </Text>
                       </View>
-                    </View>
+                    </View>*/}
                     <LinearGradient
                       colors={
                         selectedSubscription === 'annual'
@@ -314,6 +316,12 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
                     </LinearGradient>
                   </TouchableOpacity>
                 </View>
+                <Text
+                  style={[styles.privacyLink, { textDecorationLine: 'none' }]}>
+                  {this.state.isFreeTrialAvailable
+                    ? resources.t('SUBSCRIPTION.CANCEL_ANYTIME_FREE_TRIAL')
+                    : resources.t('SUBSCRIPTION.CANCEL_ANYTIME')}
+                </Text>
                 <TouchableOpacity onPress={this.purchasePackage}>
                   <Animated.View
                     style={[

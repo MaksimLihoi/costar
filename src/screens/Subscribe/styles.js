@@ -477,12 +477,17 @@ const Styles2 = StyleSheet.create({
     padding: 20,
     borderRadius: 16,
   },
+  topCardDescriptionContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
   topCardDescription: {
     color: colors.white,
     fontSize: 18,
     fontFamily: fonts.sfProMedium,
-    lineHeight: 24,
-    textAlign: 'center',
+    lineHeight: 32,
+    textAlign: 'left',
   },
   topCardAuthor: {
     marginTop: scale(10),
@@ -499,7 +504,7 @@ const Styles2 = StyleSheet.create({
     paddingVertical: 20,
   },
   card: {
-    ...ifIphoneX({ height: 180 }, { height: 135 }),
+    height: 180,
     width: wp('43%'),
     justifyContent: 'space-between',
     alignItems: 'center',
