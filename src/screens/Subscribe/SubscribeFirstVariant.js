@@ -245,13 +245,15 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
                 <View style={styles.cardsContainer}>
                   <TouchableOpacity
                     onPress={() => this.handleCardPress('annual')}>
-                    {/*<View style={styles.cardLabelContainer}>
-                      <View style={styles.cardLabel}>
-                        <Text style={styles.cardLabelText}>
-                          {resources.t('SUBSCRIPTION.SAVE_80')}
-                        </Text>
+                    {this.state.isFreeTrialAvailable && (
+                      <View style={styles.cardLabelContainer}>
+                        <View style={styles.cardLabel}>
+                          <Text style={styles.cardLabelText}>
+                            {resources.t('SUBSCRIPTION.SAVE_80')}
+                          </Text>
+                        </View>
                       </View>
-                    </View>*/}
+                    )}
                     <LinearGradient
                       colors={
                         selectedSubscription === 'annual'
