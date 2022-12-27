@@ -10,7 +10,6 @@ import SwitchSelector from 'react-native-switch-selector';
 import { FixedButton, Header, Prognosis } from '../../components';
 import { resources } from '../../shared';
 import { getJoinedDate } from '../../helpers';
-import purchasesInteractions from '../../shared/purchases/interactions';
 import { img } from '../../../assets/img';
 
 import {
@@ -30,7 +29,6 @@ import logger from '../../utils/logger';
 
 type State = {
   userBirthDateParts: Array<string>,
-  isActivePurchase: boolean,
   shouldShowFixedButton: boolean,
   section: string,
   purchaseButtonVisible: boolean,
@@ -41,6 +39,8 @@ type Props = {
   prognosisTomorrow: Object,
   prognosisYesterday: Object,
   prognosisToday: Object,
+  isActivePurchase: boolean,
+  isTrialAvailable: boolean,
 };
 
 const options = [
@@ -69,8 +69,6 @@ const CustomScrollView = wrapScrollView(ScrollView);
 class DailyMatchup extends PureComponent<Props, State> {
   state = {
     userBirthDateParts: [],
-    isActivePurchase: false,
-    isFreeTrialAvailable: false,
     shouldShowFixedButton: false,
     section: 'today',
     purchaseButtonVisible: false,
@@ -148,22 +146,6 @@ class DailyMatchup extends PureComponent<Props, State> {
 
   getPurchaseStatus = async () => {
     try {
-      await purchasesInteractions.getPurchaseStatus();
-      const status = await AsyncStorage.getItem('isActivePurchase').then(
-        (value) => JSON.parse(value),
-      );
-      this.setState({
-        isActivePurchase: status,
-        isFreeTrialAvailable: !status,
-      });
-
-      if (!status) {
-        await purchasesInteractions.checkIsTrialAvailable();
-        const trialStatus = await AsyncStorage.getItem('isTrialAvailable').then(
-          (value) => JSON.parse(value),
-        );
-        this.setState({ isFreeTrialAvailable: trialStatus });
-      }
     } catch (error) {
       logger.error(error);
     }
@@ -203,18 +185,17 @@ class DailyMatchup extends PureComponent<Props, State> {
   render() {
     const {
       userBirthDateParts,
-      isActivePurchase,
-      isFreeTrialAvailable,
       shouldShowFixedButton,
       section,
       purchaseButtonVisible,
-      buttonBottom,
     } = this.state;
     const {
       prognosisToday,
       prognosisTomorrow,
       prognosisYesterday,
       isFetching,
+      isTrialAvailable,
+      isActivePurchase,
     } = this.props;
 
     let data = prognosisToday;
@@ -302,6 +283,8 @@ const mapStateToProps = (state) => ({
   prognosisTomorrow: state.prognosisTomorrow,
   prognosisYesterday: state.prognosisYesterday,
   isFetching: state.fetching,
+  isTrialAvailable: state.isTrialAvailable,
+  isActivePurchase: state.isActivePurchase,
   state,
 });
 

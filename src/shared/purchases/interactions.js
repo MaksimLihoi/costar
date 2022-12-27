@@ -22,6 +22,7 @@ const purchasePackage = async (purchase: PurchasesPackageType) => {
     purchaserInfo.activeSubscriptions.length
   ) {
     await AsyncStorage.setItem('isActivePurchase', JSON.stringify(true));
+    await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
   }
 };
 
@@ -77,6 +78,7 @@ const getPurchaseStatus = async () => {
       purchaserInfo.activeSubscriptions.length
     ) {
       await AsyncStorage.setItem('isActivePurchase', JSON.stringify(true));
+      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
     } else {
       await AsyncStorage.setItem('isActivePurchase', JSON.stringify(false));
     }

@@ -61,8 +61,9 @@ export const setIsActivePurchase = (isActivePurchase: boolean) => ({
   isActivePurchase,
 });
 
-export const getIsActivePurchase = () => ({
-  type: types.GET_IS_ACTIVE_PURCHASE,
+export const setIsTrialAvailable = (isTrialAvailable: boolean) => ({
+  type: types.SET_IS_TRIAL_AVAILABLE,
+  isTrialAvailable,
 });
 
 export const setRemoteConfig = (config: string) => ({

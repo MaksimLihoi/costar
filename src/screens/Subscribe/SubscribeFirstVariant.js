@@ -27,7 +27,7 @@ import { Styles2 as styles } from './styles';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { Events } from '../../shared/analytics/events';
 import { trackEvent } from '../../shared/analytics';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setIsActivePurchase, setIsTrialAvailable } from '../../store/actions';
 
 const SubscriptionEvent = {
   annual: Events.Paywall.YearButtonClick,
@@ -67,11 +67,6 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
   animatedValue1 = new Animated.Value(0);
 
   async componentDidMount() {
-    await purchasesInteractions.checkIsTrialAvailable();
-    const status = await AsyncStorage.getItem('isTrialAvailable').then(
-      (value) => JSON.parse(value),
-    );
-    this.setState({ isFreeTrialAvailable: status });
     this.animate();
     this.scale();
     this._interval = setInterval(() => {
@@ -160,6 +155,11 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
       await purchasesInteractions.purchasePackage(purchase);
 
       this.setState({ isFetching: false });
+
+      const { dispatch } = this.props;
+
+      dispatch(setIsActivePurchase(true));
+      dispatch(setIsTrialAvailable(false));
 
       trackEvent(Events.Paywall.WinWinShowed);
 
