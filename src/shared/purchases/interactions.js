@@ -36,6 +36,7 @@ const restorePurchase = async () => {
       restore.activeSubscriptions.length
     ) {
       await AsyncStorage.setItem('isActivePurchase', JSON.stringify(true));
+      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
       restoredTitles.push('Premium Version');
     }
     if (restoredTitles.length) {
@@ -45,8 +46,11 @@ const restorePurchase = async () => {
           ', ',
         )}`,
       );
+      return true;
     } else {
+      await getTrialStatus();
       Alert.alert('Nothing to restore');
+      return false;
     }
   } catch (error) {
     Alert.alert('Restore failed', error.message);
@@ -81,13 +85,14 @@ const getPurchaseStatus = async () => {
       await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
     } else {
       await AsyncStorage.setItem('isActivePurchase', JSON.stringify(false));
+      await getTrialStatus();
     }
   } catch (error) {
     logger.error(error);
   }
 };
 
-const checkIsTrialAvailable = async () => {
+const getTrialStatus = async () => {
   try {
     const transactions = await Purchases.restoreTransactions();
 
@@ -114,5 +119,5 @@ export default {
   getPurchaserInfo,
   getPurchaseStatus,
   setAvailablePurchases,
-  checkIsTrialAvailable,
+  getTrialStatus,
 };

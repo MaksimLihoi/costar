@@ -67,7 +67,7 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
   animatedValue1 = new Animated.Value(0);
 
   async componentDidMount() {
-    await purchasesInteractions.checkIsTrialAvailable();
+    await purchasesInteractions.getTrialStatus();
     this.animate();
     this.scale();
     this._interval = setInterval(() => {
@@ -177,8 +177,15 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
   };
 
   restorePurchase = async () => {
+    const { dispatch } = this.props;
     trackEvent(Events.Paywall.RestoreButtonClick);
-    await purchasesInteractions.restorePurchase();
+    const result = await purchasesInteractions.restorePurchase();
+    dispatch(setIsActivePurchase(result));
+    if (result) {
+      dispatch(setIsTrialAvailable(!result));
+    } else {
+      purchasesInteractions.getTrialStatus();
+    }
   };
 
   render() {

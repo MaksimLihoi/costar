@@ -25,10 +25,10 @@ const getSubscriptions = async () => {
       MATCHUP_SUBSCRIPTIONS.YEAR,
       MATCHUP_SUBSCRIPTIONS.YEAR2,
     ]);
-    console.log(result);
+    logger.log(result);
     return result;
   } catch (err) {
-    console.warn(err.code, err.message);
+    logger.warn(err.code, err.message);
   }
 };
 
@@ -68,7 +68,7 @@ const restorePurchase = async () => {
 const requestSubscription = async (sku: string) => {
   try {
     const result = await RNIap.requestPurchase(sku);
-    console.log(result);
+    logger.log(result);
   } catch (error) {
     Alert.alert(error.message);
   }

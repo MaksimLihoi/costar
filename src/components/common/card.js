@@ -1,6 +1,6 @@
 // @flow
 
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -27,7 +27,6 @@ type Props = {
   description: string,
   isActivePurchase: boolean,
   id: number,
-  refresh(): Promise<void>,
   professions: ?Array<string>,
   eventSource: string,
 };
@@ -44,7 +43,7 @@ const TitleEvent = {
   Important: Events.Personality.ImportantUnlockButtonClick,
 };
 
-export class Card extends PureComponent<Props> {
+export class Card extends Component<Props> {
   static contextType = NavigationContext;
   onPress = (source) => {
     let navigation = this.context;
