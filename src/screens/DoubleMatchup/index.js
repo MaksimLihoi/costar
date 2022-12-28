@@ -1,7 +1,14 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { Image, ImageBackground, ScrollView, Text, View } from 'react-native';
+import {
+  Alert,
+  Image,
+  ImageBackground,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import { connect } from 'react-redux';
 import PercentCircle from 'src/components/PercentCircle';
 import { getDateParts, getJoinedDate } from 'src/helpers/dateParsers';
@@ -32,6 +39,7 @@ type State = {
   secondDateParts: Array<string>,
   isWomanActive: boolean,
   isManActive: boolean,
+  isActivePurchase: boolean,
   purchaseButtonVisible: boolean,
 };
 
@@ -44,10 +52,14 @@ class DoubleMatchup extends PureComponent<Props, State> {
     purchaseButtonVisible: false,
     buttonBottom: -80,
     scrollY: 0,
+    isActivePurchase: false,
   };
 
   async componentDidMount() {
-    const { womanBirthDate, manBirthDate, navigation } = this.props;
+    const { womanBirthDate, manBirthDate, navigation, isActivePurchase } =
+      this.props;
+    this.state.isActivePurchase = isActivePurchase;
+    Alert.alert('isActivePurchase ' + isActivePurchase);
     if (womanBirthDate && manBirthDate) {
       const firstDateParts = getDateParts(womanBirthDate);
       const secondDateParts = getDateParts(manBirthDate);
@@ -120,10 +132,14 @@ class DoubleMatchup extends PureComponent<Props, State> {
   };
 
   render() {
-    const { firstDateParts, secondDateParts, isWomanActive, isManActive } =
-      this.state;
-    const { doubleCompatibility, isActivePurchase, isFreeTrialAvailable } =
-      this.props;
+    const {
+      firstDateParts,
+      secondDateParts,
+      isWomanActive,
+      isManActive,
+      isActivePurchase,
+    } = this.state;
+    const { doubleCompatibility, isFreeTrialAvailable } = this.props;
 
     return (
       <View style={styles.container}>

@@ -67,6 +67,7 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
   animatedValue1 = new Animated.Value(0);
 
   async componentDidMount() {
+    await purchasesInteractions.checkIsTrialAvailable();
     this.animate();
     this.scale();
     this._interval = setInterval(() => {
@@ -144,7 +145,7 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
 
     try {
       const { selectedSubscription } = this.state;
-      const { availablePurchases } = this.props;
+      const { availablePurchases, dispatch } = this.props;
       this.setState({ isFetching: true });
 
       const purchase = availablePurchases.find(
@@ -155,8 +156,6 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
       await purchasesInteractions.purchasePackage(purchase);
 
       this.setState({ isFetching: false });
-
-      const { dispatch } = this.props;
 
       dispatch(setIsActivePurchase(true));
       dispatch(setIsTrialAvailable(false));
