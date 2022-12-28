@@ -184,7 +184,7 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
     if (result) {
       dispatch(setIsTrialAvailable(!result));
     } else {
-      purchasesInteractions.getTrialStatus();
+      await purchasesInteractions.getTrialStatus();
     }
   };
 
