@@ -74,7 +74,10 @@ const getPurchaserInfo = () => Purchases.getPurchaserInfo();
 
 const getPurchaseStatus = async () => {
   try {
+    const restore = await Purchases.restoreTransactions();
     const purchaserInfo = await Purchases.getPurchaserInfo();
+
+    alert(JSON.stringify(purchaserInfo));
 
     if (
       purchaserInfo &&
@@ -85,7 +88,17 @@ const getPurchaseStatus = async () => {
       await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
     } else {
       await AsyncStorage.setItem('isActivePurchase', JSON.stringify(false));
-      await getTrialStatus();
+    }
+
+    if (
+      restore &&
+      restore.allPurchasedProductIdentifiers &&
+      restore.allPurchasedProductIdentifiers.length > 0
+    ) {
+      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
+      alert(await AsyncStorage.getItem('isTrialAvailable'));
+    } else {
+      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(true));
     }
   } catch (error) {
     logger.error(error);
@@ -95,7 +108,6 @@ const getPurchaseStatus = async () => {
 const getTrialStatus = async () => {
   try {
     const transactions = await Purchases.restoreTransactions();
-
     if (
       transactions &&
       transactions.allPurchasedProductIdentifiers &&

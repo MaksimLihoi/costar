@@ -101,7 +101,7 @@ export const reducer = (state = initialState, action) => {
     case types.SET_IS_ACTIVE_PURCHASE:
       return { ...state, isActivePurchase: action.isActivePurchase };
     case types.SET_IS_TRIAL_AVAILABLE:
-      return { ...state, isTrialAvailable: action.isActivePurchase };
+      return { ...state, isTrialAvailable: action.isTrialAvailable };
     default:
       return state;
   }

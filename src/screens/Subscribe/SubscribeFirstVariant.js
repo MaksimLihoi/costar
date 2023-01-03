@@ -40,6 +40,7 @@ type Props = {
   annualPurchasePrice: string,
   annualPrice: string,
   monthPurchasePrice: string,
+  isTrialAvailable: boolean,
 };
 
 type State = {
@@ -57,7 +58,6 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
   state = {
     selectedSubscription: 'annual',
     isFetching: false,
-    isFreeTrialAvailable: false,
   };
 
   spinValue = new Animated.Value(0);
@@ -67,7 +67,6 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
   animatedValue1 = new Animated.Value(0);
 
   async componentDidMount() {
-    await purchasesInteractions.getTrialStatus();
     this.animate();
     this.scale();
     this._interval = setInterval(() => {
@@ -181,10 +180,14 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
     trackEvent(Events.Paywall.RestoreButtonClick);
     const result = await purchasesInteractions.restorePurchase();
     dispatch(setIsActivePurchase(result));
+
+    setTimeout(() => {
+      this.closeScreen('automatically');
+    }, 600);
     if (result) {
       dispatch(setIsTrialAvailable(!result));
     } else {
-      await purchasesInteractions.getTrialStatus();
+      await purchasesInteractions.getPurchaseStatus();
     }
   };
 
@@ -223,7 +226,7 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
               }}>
               <View style={styles.contentContainer}>
                 <Text style={styles.contentTitle}>
-                  {this.state.isFreeTrialAvailable
+                  {this.props.isTrialAvailable
                     ? resources.t('SUBSCRIPTION.FREE_FULL_ACCESS').toUpperCase()
                     : resources.t('SUBSCRIPTION.FULL_ACCESS').toUpperCase()}
                 </Text>
@@ -251,7 +254,7 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
                 <View style={styles.cardsContainer}>
                   <TouchableOpacity
                     onPress={() => this.handleCardPress('annual')}>
-                    {this.state.isFreeTrialAvailable && (
+                    {this.props.isTrialAvailable && (
                       <View style={styles.cardLabelContainer}>
                         <View style={styles.cardLabel}>
                           <Text style={styles.cardLabelText}>
@@ -326,7 +329,7 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
                 </View>
                 <Text
                   style={[styles.privacyLink, { textDecorationLine: 'none' }]}>
-                  {this.state.isFreeTrialAvailable
+                  {this.props.isTrialAvailable
                     ? `3 Days free. Then ${
                         selectedSubscription === 'annual'
                           ? annualPurchasePrice + '/year'
@@ -366,7 +369,7 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
                       {!isFetching ? (
                         <>
                           <Text style={styles.buttonText}>
-                            {this.state.isFreeTrialAvailable
+                            {this.props.isTrialAvailable
                               ? resources.t('SUBSCRIPTION.CONTINUE_TRIAL')
                               : resources
                                   .t('SUBSCRIPTION.CONTINUE')
@@ -406,27 +409,30 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state) => ({
-  selectedAnswer: state.selectedAnswer,
-  availablePurchases: state.availablePurchases,
-  annualPurchasePrice:
-    (state.availablePurchases &&
-      state.availablePurchases.find(
-        (purchase) => purchase.packageType === 'ANNUAL',
-      ).product.price_string) ||
-    '$39.99',
-  monthPurchasePrice:
-    (state.availablePurchases &&
-      state.availablePurchases.find(
-        (purchase) => purchase.packageType === 'MONTHLY',
-      ).product.price_string) ||
-    '$14.99',
-  annualPrice:
-    (state.availablePurchases &&
-      state.availablePurchases.find(
-        (purchase) => purchase.packageType === 'ANNUAL',
-      ).product.price) ||
-    14.99,
-});
+const mapStateToProps = (state) => {
+  return {
+    isTrialAvailable: state.isTrialAvailable,
+    selectedAnswer: state.selectedAnswer,
+    availablePurchases: state.availablePurchases,
+    annualPurchasePrice:
+      (state.availablePurchases &&
+        state.availablePurchases.find(
+          (purchase) => purchase.packageType === 'ANNUAL',
+        ).product.price_string) ||
+      '$39.99',
+    monthPurchasePrice:
+      (state.availablePurchases &&
+        state.availablePurchases.find(
+          (purchase) => purchase.packageType === 'MONTHLY',
+        ).product.price_string) ||
+      '$14.99',
+    annualPrice:
+      (state.availablePurchases &&
+        state.availablePurchases.find(
+          (purchase) => purchase.packageType === 'ANNUAL',
+        ).product.price) ||
+      14.99,
+  };
+};
 
 export default connect(mapStateToProps, null)(SubscribeFirstVariant);
