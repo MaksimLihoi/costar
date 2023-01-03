@@ -94,7 +94,6 @@ const getPurchaseStatus = async () => {
       restore.allPurchasedProductIdentifiers.length > 0
     ) {
       await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
-      alert(await AsyncStorage.getItem('isTrialAvailable'));
     } else {
       await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(true));
     }
