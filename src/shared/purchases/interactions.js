@@ -77,8 +77,6 @@ const getPurchaseStatus = async () => {
     const restore = await Purchases.restoreTransactions();
     const purchaserInfo = await Purchases.getPurchaserInfo();
 
-    alert(JSON.stringify(purchaserInfo));
-
     if (
       purchaserInfo &&
       purchaserInfo.activeSubscriptions &&
