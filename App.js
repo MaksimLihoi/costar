@@ -13,6 +13,7 @@ import { Settings } from 'react-native-fbsdk-next';
 import appsFlyer from 'react-native-appsflyer';
 import { useAdapty } from './src/shared/hooks/useAdapty';
 import logger from './src/utils/logger';
+import remoteConfig from '@react-native-firebase/remote-config';
 
 const persistor = persistStore(store);
 
@@ -44,6 +45,26 @@ const App = () => {
   }, []);
 
   purchasesInteractions.setup();
+
+  useEffect(() => {
+    remoteConfig()
+      .setDefaults({
+        test: false,
+      })
+      .then(() => remoteConfig().fetchAndActivate())
+      .then((fetchedRemotely) => {
+        if (fetchedRemotely) {
+          logger.log('Configs were retrieved from the backend and activated.');
+        } else {
+          logger.log(
+            'No configs were fetched from the backend, and the local configs were already activated',
+          );
+        }
+      });
+
+    const test = remoteConfig().getValue('test');
+    logger.log(test.asBoolean());
+  });
 
   return (
     <Provider store={store}>
