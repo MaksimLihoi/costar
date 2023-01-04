@@ -1,7 +1,6 @@
 // @flow
 
-//export const REVENUECAT_PUBLIC_SDK_KEY = 'lHonIYZsKpieOWLYVpxZhfjNQTbnXfeH';
-export const REVENUECAT_PUBLIC_SDK_KEY = 'appl_HGjVBcVDgmApVZZWyOBrTalJsxS';
+export const REVENUECAT_PUBLIC_SDK_KEY = 'lHonIYZsKpieOWLYVpxZhfjNQTbnXfeH';
 
 export const SUBSCRIPTION_IDENTIFIER = {
   WEEK: '$rc_weekly',

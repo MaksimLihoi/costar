@@ -568,7 +568,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = costar/costarDebug.entitlements;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = LRRDSVX5FL;
+				DEVELOPMENT_TEAM = ZW98R5K9TL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = costar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -581,7 +581,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alignedcode.coteststar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sayhi.matchup;
 				PRODUCT_NAME = costar;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -596,7 +596,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = LRRDSVX5FL;
+				DEVELOPMENT_TEAM = ZW98R5K9TL;
 				INFOPLIST_FILE = costar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -608,7 +608,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.alignedcode.coteststar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sayhi.matchup;
 				PRODUCT_NAME = costar;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
