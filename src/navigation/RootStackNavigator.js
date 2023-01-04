@@ -8,11 +8,15 @@ import SubscribeFirstVariant from '../screens/Subscribe/SubscribeFirstVariant';
 import Terms from '../screens/Terms';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FAQ from '../screens/FAQ/FAQ';
+import { setIsActivePurchase, setIsTrialAvailable } from '../store/actions';
+import { useDispatch } from 'react-redux';
+import purchasesInteractions from '../shared/purchases/interactions';
 
 const RootStack = createStackNavigator();
 
 const RootStackNavigator = () => {
   const [isOnboardingComplete, setIsOnboardingComplete] = useState(null);
+  const dispatch = useDispatch();
 
   const checkIfOnboardingComplete = async () => {
     const isComplete = await AsyncStorage.getItem('isSeenOnboarding');
@@ -22,6 +26,19 @@ const RootStackNavigator = () => {
   useEffect(() => {
     checkIfOnboardingComplete();
   });
+
+  const setPurchaseState = async () => {
+    await purchasesInteractions.getPurchaseStatus();
+    const isActivePurchase = await AsyncStorage.getItem('isActivePurchase');
+    const isTrialAvailable = await AsyncStorage.getItem('isTrialAvailable');
+
+    dispatch(setIsActivePurchase(JSON.parse(isActivePurchase)));
+    dispatch(setIsTrialAvailable(JSON.parse(isTrialAvailable)));
+  };
+
+  useEffect(() => {
+    setPurchaseState();
+  }, []);
 
   return isOnboardingComplete !== null ? (
     <RootStack.Navigator screenOptions={{ headerShown: false }}>

@@ -22,6 +22,7 @@ const purchasePackage = async (purchase: PurchasesPackageType) => {
     purchaserInfo.activeSubscriptions.length
   ) {
     await AsyncStorage.setItem('isActivePurchase', JSON.stringify(true));
+    await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
   }
 };
 
@@ -35,6 +36,7 @@ const restorePurchase = async () => {
       restore.activeSubscriptions.length
     ) {
       await AsyncStorage.setItem('isActivePurchase', JSON.stringify(true));
+      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
       restoredTitles.push('Premium Version');
     }
     if (restoredTitles.length) {
@@ -44,8 +46,11 @@ const restorePurchase = async () => {
           ', ',
         )}`,
       );
+      return true;
     } else {
+      await getTrialStatus();
       Alert.alert('Nothing to restore');
+      return false;
     }
   } catch (error) {
     Alert.alert('Restore failed', error.message);
@@ -69,6 +74,7 @@ const getPurchaserInfo = () => Purchases.getPurchaserInfo();
 
 const getPurchaseStatus = async () => {
   try {
+    const restore = await Purchases.restoreTransactions();
     const purchaserInfo = await Purchases.getPurchaserInfo();
 
     if (
@@ -77,18 +83,28 @@ const getPurchaseStatus = async () => {
       purchaserInfo.activeSubscriptions.length
     ) {
       await AsyncStorage.setItem('isActivePurchase', JSON.stringify(true));
+      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
     } else {
       await AsyncStorage.setItem('isActivePurchase', JSON.stringify(false));
+    }
+
+    if (
+      restore &&
+      restore.allPurchasedProductIdentifiers &&
+      restore.allPurchasedProductIdentifiers.length > 0
+    ) {
+      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
+    } else {
+      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(true));
     }
   } catch (error) {
     logger.error(error);
   }
 };
 
-const checkIsTrialAvailable = async () => {
+const getTrialStatus = async () => {
   try {
     const transactions = await Purchases.restoreTransactions();
-
     if (
       transactions &&
       transactions.allPurchasedProductIdentifiers &&
@@ -112,5 +128,5 @@ export default {
   getPurchaserInfo,
   getPurchaseStatus,
   setAvailablePurchases,
-  checkIsTrialAvailable,
+  getTrialStatus,
 };

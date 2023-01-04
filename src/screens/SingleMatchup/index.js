@@ -34,16 +34,17 @@ import logger from '../../utils/logger';
 
 type State = {
   userBirthDateParts: Array<string>,
-  isActivePurchase: boolean,
   shouldShowFixedButton: boolean,
   section: string,
   purchaseButtonVisible: boolean,
 };
 
 type Props = {
+  isActivePurchase: boolean,
   isFetching: boolean,
   singleCompatibility: Object,
   skills: Object,
+  isFreeTrialAvailable: boolean,
 };
 
 const options = [
@@ -67,8 +68,6 @@ const CustomScrollView = wrapScrollView(ScrollView);
 class SingleMatchup extends PureComponent<Props, State> {
   state = {
     userBirthDateParts: [],
-    isActivePurchase: false,
-    isFreeTrialAvailable: false,
     shouldShowFixedButton: false,
     section: 'skills',
     purchaseButtonVisible: false,
@@ -145,22 +144,6 @@ class SingleMatchup extends PureComponent<Props, State> {
 
   getPurchaseStatus = async () => {
     try {
-      await purchasesInteractions.getPurchaseStatus();
-      const status = await AsyncStorage.getItem('isActivePurchase').then(
-        (value) => JSON.parse(value),
-      );
-      this.setState({
-        isActivePurchase: status,
-        isFreeTrialAvailable: !status,
-      });
-
-      if (!status) {
-        await purchasesInteractions.checkIsTrialAvailable();
-        const trialStatus = await AsyncStorage.getItem('isTrialAvailable').then(
-          (value) => JSON.parse(value),
-        );
-        this.setState({ isFreeTrialAvailable: trialStatus });
-      }
     } catch (error) {
       logger.error(error);
     }
@@ -249,14 +232,18 @@ class SingleMatchup extends PureComponent<Props, State> {
   render() {
     const {
       userBirthDateParts,
-      isActivePurchase,
-      isFreeTrialAvailable,
       shouldShowFixedButton,
       section,
       purchaseButtonVisible,
       buttonBottom,
     } = this.state;
-    const { singleCompatibility, skills, isFetching } = this.props;
+    const {
+      singleCompatibility,
+      skills,
+      isFetching,
+      isActivePurchase,
+      isFreeTrialAvailable,
+    } = this.props;
 
     return (
       <View style={styles.container}>
@@ -356,6 +343,8 @@ const mapStateToProps = (state) => ({
   singleCompatibility: state.singleCompatibility,
   skills: state.skills,
   isFetching: state.fetching,
+  isActivePurchase: state.isActivePurchase,
+  isFreeTrialAvailable: state.isFreeTrialAvailable,
   state,
 });
 

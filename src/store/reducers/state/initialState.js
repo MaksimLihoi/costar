@@ -16,6 +16,7 @@ const initialState = {
   userName: '',
   subscribeScreen: '',
   isActivePurchase: false,
+  isTrialAvailable: false,
 };
 
 export default initialState;

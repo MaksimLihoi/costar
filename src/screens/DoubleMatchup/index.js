@@ -3,8 +3,6 @@
 import React, { PureComponent } from 'react';
 import { Image, ImageBackground, ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-
-import purchasesInteractions from 'src/shared/purchases/interactions';
 import PercentCircle from 'src/components/PercentCircle';
 import { getDateParts, getJoinedDate } from 'src/helpers/dateParsers';
 
@@ -15,7 +13,6 @@ import { getDoubleCompatibility, getFAQ } from 'src/store/actions';
 import Header from 'src/components/Header';
 import Card from 'src/components/common/card';
 import styles from './styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import logger from '../../utils/logger';
 
@@ -26,12 +23,13 @@ type Props = {
     result: number,
     text: string,
   },
+  isActivePurchase: boolean,
+  isFreeTrialAvailable: boolean,
 };
 
 type State = {
   firstDateParts: Array<string>,
   secondDateParts: Array<string>,
-  isActivePurchase: boolean,
   isWomanActive: boolean,
   isManActive: boolean,
   purchaseButtonVisible: boolean,
@@ -41,8 +39,6 @@ class DoubleMatchup extends PureComponent<Props, State> {
   state = {
     firstDateParts: [],
     secondDateParts: [],
-    isActivePurchase: false,
-    isFreeTrialAvailable: false,
     isWomanActive: true,
     isManActive: true,
     purchaseButtonVisible: false,
@@ -76,17 +72,6 @@ class DoubleMatchup extends PureComponent<Props, State> {
 
   getPurchaseStatus = async () => {
     try {
-      await purchasesInteractions.getPurchaseStatus();
-      await purchasesInteractions.checkIsTrialAvailable();
-
-      const status = await AsyncStorage.getItem('isActivePurchase').then(
-        (value) => JSON.parse(value),
-      );
-      const trialStatus = await AsyncStorage.getItem('isTrialAvailable').then(
-        (value) => JSON.parse(value),
-      );
-      this.setState({ isActivePurchase: status });
-      this.setState({ isFreeTrialAvailable: trialStatus });
     } catch (error) {
       logger.error(error);
     }
@@ -135,15 +120,10 @@ class DoubleMatchup extends PureComponent<Props, State> {
   };
 
   render() {
-    const {
-      firstDateParts,
-      secondDateParts,
-      isActivePurchase,
-      isFreeTrialAvailable,
-      isWomanActive,
-      isManActive,
-    } = this.state;
-    const { doubleCompatibility } = this.props;
+    const { firstDateParts, secondDateParts, isWomanActive, isManActive } =
+      this.state;
+    const { doubleCompatibility, isFreeTrialAvailable, isActivePurchase } =
+      this.props;
 
     return (
       <View style={styles.container}>
@@ -184,7 +164,6 @@ class DoubleMatchup extends PureComponent<Props, State> {
                         titleIcon={img.iconHearts}
                         isActivePurchase={isActivePurchase}
                         description={doubleCompatibility.text}
-                        refresh={this.getPurchaseStatus}
                         eventSource='compatibility'
                       />
                     </View>
@@ -217,6 +196,7 @@ const mapStateToProps = (state) => ({
   doubleCompatibility: state.doubleCompatibility,
   womanBirthDate: state.womanBirthDate,
   manBirthDate: state.manBirthDate,
+  isActivePurchase: state.isActivePurchase,
+  isFreeTrialAvailable: state.isFreeTrialAvailable,
 });
-
 export default connect(mapStateToProps, null)(DoubleMatchup);
