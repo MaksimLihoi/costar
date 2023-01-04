@@ -23,7 +23,6 @@ import {
   setAvailablePurchases,
 } from 'src/store/actions';
 import { colors } from 'src/variables';
-import { SubscriptionBigButton } from 'src/components/common/SubscriptionBigButton';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 import { resources } from '../../shared';
@@ -279,7 +278,7 @@ class SingleMatchup extends PureComponent<Props, State> {
                                 refresh={this.getPurchaseStatus}
                             />
                         )} */}
-            {!isActivePurchase && isFreeTrialAvailable && (
+            {/*{!isActivePurchase && isFreeTrialAvailable && (
               <SubscriptionBigButton
                 buttonBottom={buttonBottom}
                 refresh={this.getPurchaseStatus}
@@ -287,7 +286,7 @@ class SingleMatchup extends PureComponent<Props, State> {
                 //     this.props.navigation.state.routeName
                 // }
               />
-            )}
+            )}*/}
             <CustomScrollView
               ref={(ref) => {
                 this.scrollView = ref;

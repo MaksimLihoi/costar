@@ -14,7 +14,6 @@ import { resources } from 'src/shared/i18n/configuration';
 import { getDoubleCompatibility, getFAQ } from 'src/store/actions';
 import Header from 'src/components/Header';
 import Card from 'src/components/common/card';
-import SubscriptionCircleButton from 'src/components/common/SubscriptionCircleButton';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
@@ -150,9 +149,9 @@ class DoubleMatchup extends PureComponent<Props, State> {
       <View style={styles.container}>
         <ImageBackground source={img.gradient} style={styles.background}>
           <View style={styles.viewContainer}>
-            {!isActivePurchase && isFreeTrialAvailable && (
+            {/*{!isActivePurchase && isFreeTrialAvailable && (
               <SubscriptionCircleButton refresh={this.getPurchaseStatus} />
-            )}
+            )}*/}
             <ScrollView>
               <View style={styles.contentContainer}>
                 <Header
