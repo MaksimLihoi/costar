@@ -15,6 +15,7 @@ import Card from 'src/components/common/card';
 import styles from './styles';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import logger from '../../utils/logger';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Props = {
   womanBirthDate: string,
@@ -77,7 +78,7 @@ class DoubleMatchup extends PureComponent<Props, State> {
     }
   };
 
-  onFirstDateChange = (date: string) => {
+  onFirstDateChange = async (date: string) => {
     const { secondDateParts } = this.state;
     const { dispatch } = this.props;
     const firstDateParts = date.split(':');
@@ -91,11 +92,11 @@ class DoubleMatchup extends PureComponent<Props, State> {
       this.setState({ isManActive: false });
     }
     if (womanBirthDate && manBirthDate) {
-      dispatch(getDoubleCompatibility(womanBirthDate, manBirthDate));
+      await this.checkCompatibility(womanBirthDate, manBirthDate);
     }
   };
 
-  onSecondDateChange = (date: string) => {
+  onSecondDateChange = async (date: string) => {
     const { firstDateParts } = this.state;
     const { dispatch } = this.props;
     const secondDateParts = date.split(':');
@@ -109,7 +110,25 @@ class DoubleMatchup extends PureComponent<Props, State> {
       this.setState({ isManActive: false });
     }
     if (womanBirthDate && manBirthDate) {
+      await this.checkCompatibility(womanBirthDate, manBirthDate);
+    }
+  };
+
+  checkCompatibility = async (womanBirthDate, manBirthDate) => {
+    const { dispatch, navigation, isActivePurchase } = this.props;
+    const isTrialCompatibilityAvailable = JSON.parse(
+      await AsyncStorage.getItem('isTrialCompatibilityAvailable'),
+    );
+    logger.log('isTrialCompatibilityAvailable ', isTrialCompatibilityAvailable);
+    logger.log(typeof isTrialCompatibilityAvailable);
+    if (isActivePurchase || isTrialCompatibilityAvailable) {
       dispatch(getDoubleCompatibility(womanBirthDate, manBirthDate));
+      await AsyncStorage.setItem(
+        'isTrialCompatibilityAvailable',
+        JSON.stringify(false),
+      );
+    } else {
+      navigation.navigate(RootStackNavigatorRouts.SubscribeFirstVariant);
     }
   };
 

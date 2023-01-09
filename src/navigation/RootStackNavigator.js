@@ -29,11 +29,24 @@ const RootStackNavigator = () => {
 
   const setPurchaseState = async () => {
     await purchasesInteractions.getPurchaseStatus();
-    const isActivePurchase = await AsyncStorage.getItem('isActivePurchase');
-    const isTrialAvailable = await AsyncStorage.getItem('isTrialAvailable');
+    const isActivePurchase = JSON.parse(
+      await AsyncStorage.getItem('isActivePurchase'),
+    );
+    const isTrialAvailable = JSON.parse(
+      await AsyncStorage.getItem('isTrialAvailable'),
+    );
+    const isTrialCompatibilityAvailable = JSON.parse(
+      await AsyncStorage.getItem('isTrialCompatibilityAvailable'),
+    );
 
-    dispatch(setIsActivePurchase(JSON.parse(isActivePurchase)));
-    dispatch(setIsTrialAvailable(JSON.parse(isTrialAvailable)));
+    if (!isActivePurchase && isTrialCompatibilityAvailable === null) {
+      await AsyncStorage.setItem(
+        'isTrialCompatibilityAvailable',
+        JSON.stringify(true),
+      );
+    }
+    dispatch(setIsActivePurchase(isActivePurchase));
+    dispatch(setIsTrialAvailable(isTrialAvailable));
   };
 
   useEffect(() => {
