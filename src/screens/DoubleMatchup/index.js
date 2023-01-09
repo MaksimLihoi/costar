@@ -9,7 +9,11 @@ import { getDateParts, getJoinedDate } from 'src/helpers/dateParsers';
 import { img } from 'assets/img';
 
 import { resources } from 'src/shared/i18n/configuration';
-import { getDoubleCompatibility, getFAQ } from 'src/store/actions';
+import {
+  getDoubleCompatibility,
+  getFAQ,
+  setIsTrialCompatibilityAvailable,
+} from 'src/store/actions';
 import Header from 'src/components/Header';
 import Card from 'src/components/common/card';
 import styles from './styles';
@@ -113,18 +117,19 @@ class DoubleMatchup extends PureComponent<Props, State> {
   };
 
   checkCompatibility = async (womanBirthDate, manBirthDate) => {
-    const { dispatch, navigation, isActivePurchase } = this.props;
-    const isTrialCompatibilityAvailable = JSON.parse(
-      await AsyncStorage.getItem('isTrialCompatibilityAvailable'),
-    );
-    logger.log('isTrialCompatibilityAvailable ', isTrialCompatibilityAvailable);
-    logger.log(typeof isTrialCompatibilityAvailable);
+    const {
+      dispatch,
+      navigation,
+      isActivePurchase,
+      isTrialCompatibilityAvailable,
+    } = this.props;
     if (isActivePurchase || isTrialCompatibilityAvailable) {
       dispatch(getDoubleCompatibility(womanBirthDate, manBirthDate));
       await AsyncStorage.setItem(
         'isTrialCompatibilityAvailable',
         JSON.stringify(false),
       );
+      dispatch(setIsTrialCompatibilityAvailable(false));
     } else {
       navigation.navigate(RootStackNavigatorRouts.SubscribeFirstVariant);
     }
@@ -215,5 +220,6 @@ const mapStateToProps = (state) => ({
   manBirthDate: state.manBirthDate,
   isActivePurchase: state.isActivePurchase,
   isFreeTrialAvailable: state.isFreeTrialAvailable,
+  isTrialCompatibilityAvailable: state.isTrialCompatibilityAvailable,
 });
 export default connect(mapStateToProps, null)(DoubleMatchup);
