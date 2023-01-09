@@ -28,6 +28,7 @@ import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { Events } from '../../shared/analytics/events';
 import { trackEvent } from '../../shared/analytics';
 import { setIsActivePurchase, setIsTrialAvailable } from '../../store/actions';
+import { SUBSCRIPTION_IDENTIFIER } from '../../shared/purchases/constants';
 
 const SubscriptionEvent = {
   annual: Events.Paywall.YearButtonClick,
@@ -147,10 +148,12 @@ class SubscribeFirstVariant extends PureComponent<Props, State> {
       const { availablePurchases, dispatch } = this.props;
       this.setState({ isFetching: true });
 
-      const purchase = availablePurchases.find(
-        (availablePurchase) =>
-          availablePurchase.packageType.toLowerCase() === selectedSubscription,
-      );
+      const purchase = availablePurchases.find((availablePurchase) => {
+        return selectedSubscription === 'annual'
+          ? availablePurchase.identifier === SUBSCRIPTION_IDENTIFIER.YEAR
+          : availablePurchase.identifier ===
+              SUBSCRIPTION_IDENTIFIER.MONTH_TRIAL;
+      });
 
       await purchasesInteractions.purchasePackage(purchase);
 
@@ -423,15 +426,16 @@ const mapStateToProps = (state) => {
     monthPurchasePrice:
       (state.availablePurchases &&
         state.availablePurchases.find(
-          (purchase) => purchase.packageType === 'MONTHLY',
+          (purchase) =>
+            purchase.identifier === SUBSCRIPTION_IDENTIFIER.MONTH_TRIAL,
         ).product.price_string) ||
-      '$14.99',
+      '$9.99',
     annualPrice:
       (state.availablePurchases &&
         state.availablePurchases.find(
           (purchase) => purchase.packageType === 'ANNUAL',
         ).product.price) ||
-      14.99,
+      9.99,
   };
 };
 
