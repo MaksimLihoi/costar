@@ -8,7 +8,11 @@ import SubscribeFirstVariant from '../screens/Subscribe/SubscribeFirstVariant';
 import Terms from '../screens/Terms';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FAQ from '../screens/FAQ/FAQ';
-import { setIsActivePurchase, setIsTrialAvailable } from '../store/actions';
+import {
+  setIsActivePurchase,
+  setIsTrialAvailable,
+  setIsTrialCompatibilityAvailable,
+} from '../store/actions';
 import { useDispatch } from 'react-redux';
 import purchasesInteractions from '../shared/purchases/interactions';
 
@@ -44,6 +48,7 @@ const RootStackNavigator = () => {
         'isTrialCompatibilityAvailable',
         JSON.stringify(true),
       );
+      dispatch(setIsTrialCompatibilityAvailable(true));
     }
     dispatch(setIsActivePurchase(isActivePurchase));
     dispatch(setIsTrialAvailable(isTrialAvailable));

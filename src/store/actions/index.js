@@ -66,6 +66,13 @@ export const setIsTrialAvailable = (isTrialAvailable: boolean) => ({
   isTrialAvailable,
 });
 
+export const setIsTrialCompatibilityAvailable = (
+  isTrialCompatibilityAvailable: boolean,
+) => ({
+  type: types.SET_IS_TRIAL_COMPATIBILITY_AVAILABLE,
+  isTrialCompatibilityAvailable,
+});
+
 export const setRemoteConfig = (config: string) => ({
   type: types.SET_REMOTE_CONFIG,
   config,

@@ -17,6 +17,7 @@ const initialState = {
   subscribeScreen: '',
   isActivePurchase: false,
   isTrialAvailable: false,
+  isTrialCompatibilityAvailable: null,
 };
 
 export default initialState;

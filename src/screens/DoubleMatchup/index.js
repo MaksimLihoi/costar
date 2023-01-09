@@ -80,7 +80,6 @@ class DoubleMatchup extends PureComponent<Props, State> {
 
   onFirstDateChange = async (date: string) => {
     const { secondDateParts } = this.state;
-    const { dispatch } = this.props;
     const firstDateParts = date.split(':');
     this.setState({ firstDateParts });
     const womanBirthDate = getJoinedDate(firstDateParts);
@@ -98,7 +97,6 @@ class DoubleMatchup extends PureComponent<Props, State> {
 
   onSecondDateChange = async (date: string) => {
     const { firstDateParts } = this.state;
-    const { dispatch } = this.props;
     const secondDateParts = date.split(':');
     this.setState({ secondDateParts });
     const womanBirthDate = getJoinedDate(firstDateParts);
