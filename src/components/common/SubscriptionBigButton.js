@@ -12,6 +12,7 @@ import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { useNavigation } from '@react-navigation/native';
 import { useAnalytics } from '../../shared/analytics';
 import { Events } from '../../shared/analytics/events';
+import { AsyncStorageKeys } from '../../variables/asyncStorageKeys';
 
 export const SubscriptionBigButton = (props) => {
   const track = useAnalytics();
@@ -30,7 +31,10 @@ export const SubscriptionBigButton = (props) => {
 
   const onCloseBigButton = () => {
     setIsVisible(false);
-    AsyncStorage.setItem('purchaseButtonVisibility', JSON.stringify(false));
+    AsyncStorage.setItem(
+      AsyncStorageKeys.PurchaseButtonVisibility,
+      JSON.stringify(false),
+    );
   };
 
   return isVisible ? (

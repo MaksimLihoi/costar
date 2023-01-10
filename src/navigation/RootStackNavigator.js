@@ -15,6 +15,7 @@ import {
 } from '../store/actions';
 import { useDispatch } from 'react-redux';
 import purchasesInteractions from '../shared/purchases/interactions';
+import { AsyncStorageKeys } from '../variables/asyncStorageKeys';
 
 const RootStack = createStackNavigator();
 
@@ -23,7 +24,9 @@ const RootStackNavigator = () => {
   const dispatch = useDispatch();
 
   const checkIfOnboardingComplete = async () => {
-    const isComplete = await AsyncStorage.getItem('isSeenOnboarding');
+    const isComplete = await AsyncStorage.getItem(
+      AsyncStorageKeys.IsSeenOnboarding,
+    );
     setIsOnboardingComplete(!!isComplete);
   };
 
@@ -34,18 +37,20 @@ const RootStackNavigator = () => {
   const setPurchaseState = async () => {
     await purchasesInteractions.getPurchaseStatus();
     const isActivePurchase = JSON.parse(
-      await AsyncStorage.getItem('isActivePurchase'),
+      await AsyncStorage.getItem(AsyncStorageKeys.IsActivePurchase),
     );
     const isTrialAvailable = JSON.parse(
-      await AsyncStorage.getItem('isTrialAvailable'),
+      await AsyncStorage.getItem(AsyncStorageKeys.IsTrialAvailable),
     );
     const isTrialCompatibilityAvailable = JSON.parse(
-      await AsyncStorage.getItem('isTrialCompatibilityAvailable'),
+      await AsyncStorage.getItem(
+        AsyncStorageKeys.IsTrialCompatibilityAvailable,
+      ),
     );
 
     if (!isActivePurchase && isTrialCompatibilityAvailable === null) {
       await AsyncStorage.setItem(
-        'isTrialCompatibilityAvailable',
+        AsyncStorageKeys.IsTrialCompatibilityAvailable,
         JSON.stringify(true),
       );
       dispatch(setIsTrialCompatibilityAvailable(true));

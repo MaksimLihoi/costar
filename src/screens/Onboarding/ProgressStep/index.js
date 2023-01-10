@@ -13,11 +13,15 @@ import { RootStackNavigatorRouts } from '../../../variables/navigationRouts';
 import { trackEvent } from '../../../shared/analytics';
 import { Events } from '../../../shared/analytics/events';
 import logger from '../../../utils/logger';
+import { AsyncStorageKeys } from '../../../variables/asyncStorageKeys';
 
 class ProgressStep extends PureComponent {
   seenOnboarding = async () => {
     try {
-      await AsyncStorage.setItem('isSeenOnboarding', JSON.stringify(true));
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsSeenOnboarding,
+        JSON.stringify(true),
+      );
     } catch (error) {
       logger.error(error);
     }

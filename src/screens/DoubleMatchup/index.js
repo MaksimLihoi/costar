@@ -20,6 +20,7 @@ import styles from './styles';
 import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import logger from '../../utils/logger';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AsyncStorageKeys } from '../../variables/asyncStorageKeys';
 
 type Props = {
   womanBirthDate: string,
@@ -126,7 +127,7 @@ class DoubleMatchup extends PureComponent<Props, State> {
     if (isActivePurchase || isTrialCompatibilityAvailable) {
       dispatch(getDoubleCompatibility(womanBirthDate, manBirthDate));
       await AsyncStorage.setItem(
-        'isTrialCompatibilityAvailable',
+        AsyncStorageKeys.IsTrialCompatibilityAvailable,
         JSON.stringify(false),
       );
       dispatch(setIsTrialCompatibilityAvailable(false));

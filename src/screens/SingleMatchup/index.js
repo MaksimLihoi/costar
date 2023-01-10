@@ -31,6 +31,7 @@ import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { Events } from '../../shared/analytics/events';
 import { trackEvent } from '../../shared/analytics';
 import logger from '../../utils/logger';
+import { AsyncStorageKeys } from '../../variables/asyncStorageKeys';
 
 type State = {
   userBirthDateParts: Array<string>,
@@ -88,7 +89,9 @@ class SingleMatchup extends PureComponent<Props, State> {
 
   async componentDidMount() {
     const { dispatch } = this.props;
-    const userBirthDate = await AsyncStorage.getItem('userBirthDate');
+    const userBirthDate = await AsyncStorage.getItem(
+      AsyncStorageKeys.UserBirthDate,
+    );
     const userBirthDateParts = userBirthDate.split(':');
     this.setState({
       userBirthDateParts,
@@ -116,11 +119,13 @@ class SingleMatchup extends PureComponent<Props, State> {
   }
 
   onDidFocus = async () => {
-    AsyncStorage.getItem('purchaseButtonVisibility').then((value) => {
-      this.setState({
-        purchaseButtonVisible: JSON.parse(value) !== false,
-      });
-    });
+    AsyncStorage.getItem(AsyncStorageKeys.PurchaseButtonVisibility).then(
+      (value) => {
+        this.setState({
+          purchaseButtonVisible: JSON.parse(value) !== false,
+        });
+      },
+    );
   };
 
   setPermissionAppStore = () => {
@@ -131,7 +136,7 @@ class SingleMatchup extends PureComponent<Props, State> {
 
   onDateChange = async (userBirthDate) => {
     const { dispatch } = this.props;
-    await AsyncStorage.setItem('userBirthDate', userBirthDate);
+    await AsyncStorage.setItem(AsyncStorageKeys.UserBirthDate, userBirthDate);
     const userBirthDateParts = userBirthDate.split(':');
     this.setState({ userBirthDateParts });
     const date = getJoinedDate(userBirthDateParts);

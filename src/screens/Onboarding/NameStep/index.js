@@ -33,6 +33,7 @@ import {
   TrackingStatus,
 } from 'react-native-tracking-transparency';
 import logger from '../../../utils/logger';
+import { AsyncStorageKeys } from '../../../variables/asyncStorageKeys';
 
 const { State: TextInputState } = TextInput;
 
@@ -106,7 +107,7 @@ const NameStep = (props) => {
     const { value } = state;
     const userName = value.trim() || 'Name';
     textInput.current.blur();
-    await AsyncStorage.setItem('name', userName);
+    await AsyncStorage.setItem(AsyncStorageKeys.Name, userName);
     dispatch(setUserName(userName));
     navigation.navigate(OnboardingStackNavigatorRouts.BirthdayStep);
     track(Events.Onboarding.NameNextButtonClick);

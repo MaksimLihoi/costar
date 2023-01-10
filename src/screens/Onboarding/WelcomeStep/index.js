@@ -18,6 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useAnalytics } from '../../../shared/analytics';
 import { Events } from '../../../shared/analytics/events';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AsyncStorageKeys } from '../../../variables/asyncStorageKeys';
 
 type Props = {
   setAvailablePurchases(Array<PurchasesPackageType>): void,
@@ -34,7 +35,10 @@ const WelcomeStep = ({ setAvailablePurchases }: Props) => {
   }, []);
 
   const setPurchaseStatus = useCallback(async () => {
-    await AsyncStorage.setItem('isActivePurchase', JSON.stringify(false));
+    await AsyncStorage.setItem(
+      AsyncStorageKeys.IsActivePurchase,
+      JSON.stringify(false),
+    );
   }, []);
 
   const setPurchases = useCallback(async () => {

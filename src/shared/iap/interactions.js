@@ -5,6 +5,7 @@ import RNIap from 'react-native-iap';
 import { MATCHUP_SUBSCRIPTIONS } from './constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import logger from '../../utils/logger';
+import { AsyncStorageKeys } from '../../variables/asyncStorageKeys';
 
 const initConnection = async () => {
   try {
@@ -47,7 +48,10 @@ const restorePurchase = async () => {
         purchase.productId === MATCHUP_SUBSCRIPTIONS.YEAR,
     );
     if (isActiveSubscription) {
-      await AsyncStorage.setItem('isActivePurchase', JSON.stringify(true));
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsActivePurchase,
+        JSON.stringify(true),
+      );
       restoredTitles.push('Premium Version');
     }
     if (restoredTitles.length) {
@@ -88,9 +92,15 @@ const getAvailablePurchases = async () => {
     );
 
     if (isActiveSubscription) {
-      await AsyncStorage.setItem('isActivePurchase', JSON.stringify(true));
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsActivePurchase,
+        JSON.stringify(true),
+      );
     } else {
-      await AsyncStorage.setItem('isActivePurchase', JSON.stringify(false));
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsActivePurchase,
+        JSON.stringify(false),
+      );
     }
   } catch (error) {
     logger.error(error);

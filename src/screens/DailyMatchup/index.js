@@ -26,6 +26,7 @@ import { RootStackNavigatorRouts } from '../../variables/navigationRouts';
 import { trackEvent } from '../../shared/analytics';
 import { Events } from '../../shared/analytics/events';
 import logger from '../../utils/logger';
+import { AsyncStorageKeys } from '../../variables/asyncStorageKeys';
 
 type State = {
   userBirthDateParts: Array<string>,
@@ -91,21 +92,30 @@ class DailyMatchup extends PureComponent<Props, State> {
   onDidFocus = async () => {
     const { dispatch } = this.props;
 
-    let userBirthDate = await AsyncStorage.getItem('userBirthDateDaily');
+    let userBirthDate = await AsyncStorage.getItem(
+      AsyncStorageKeys.UserBirthDateDaily,
+    );
     if (!userBirthDate) {
-      userBirthDate = await AsyncStorage.getItem('userBirthDate');
-      await AsyncStorage.setItem('userBirthDateDaily', userBirthDate);
+      userBirthDate = await AsyncStorage.getItem(
+        AsyncStorageKeys.UserBirthDate,
+      );
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.UserBirthDateDaily,
+        userBirthDate,
+      );
     }
     const userBirthDateParts = userBirthDate.split(':');
     this.setState({
       userBirthDateParts,
     });
 
-    AsyncStorage.getItem('purchaseButtonVisibility').then((value) => {
-      this.setState({
-        purchaseButtonVisible: JSON.parse(value) !== false,
-      });
-    });
+    AsyncStorage.getItem(AsyncStorageKeys.PurchaseButtonVisibility).then(
+      (value) => {
+        this.setState({
+          purchaseButtonVisible: JSON.parse(value) !== false,
+        });
+      },
+    );
 
     await this.getPurchaseStatus();
 
@@ -132,7 +142,10 @@ class DailyMatchup extends PureComponent<Props, State> {
 
   onDateChange = async (userBirthDate) => {
     const { dispatch } = this.props;
-    await AsyncStorage.setItem('userBirthDateDaily', userBirthDate);
+    await AsyncStorage.setItem(
+      AsyncStorageKeys.UserBirthDateDaily,
+      userBirthDate,
+    );
     const userBirthDateParts = userBirthDate.split(':');
     this.setState({ userBirthDateParts });
     const date = getJoinedDate(userBirthDateParts);

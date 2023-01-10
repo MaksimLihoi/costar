@@ -9,6 +9,7 @@ import * as actions from '../../store/actions';
 import { REVENUECAT_PUBLIC_SDK_KEY } from './constants';
 import type { PurchasesPackageType } from './types';
 import logger from '../../utils/logger';
+import { AsyncStorageKeys } from '../../variables/asyncStorageKeys';
 
 const setup = () => Purchases.setup(REVENUECAT_PUBLIC_SDK_KEY);
 
@@ -21,8 +22,14 @@ const purchasePackage = async (purchase: PurchasesPackageType) => {
     purchaserInfo.activeSubscriptions &&
     purchaserInfo.activeSubscriptions.length
   ) {
-    await AsyncStorage.setItem('isActivePurchase', JSON.stringify(true));
-    await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
+    await AsyncStorage.setItem(
+      AsyncStorageKeys.IsActivePurchase,
+      JSON.stringify(true),
+    );
+    await AsyncStorage.setItem(
+      AsyncStorageKeys.IsTrialAvailable,
+      JSON.stringify(false),
+    );
   }
 };
 
@@ -35,8 +42,14 @@ const restorePurchase = async () => {
       restore.activeSubscriptions &&
       restore.activeSubscriptions.length
     ) {
-      await AsyncStorage.setItem('isActivePurchase', JSON.stringify(true));
-      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsActivePurchase,
+        JSON.stringify(true),
+      );
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsTrialAvailable,
+        JSON.stringify(false),
+      );
       restoredTitles.push('Premium Version');
     }
     if (restoredTitles.length) {
@@ -82,10 +95,19 @@ const getPurchaseStatus = async () => {
       purchaserInfo.activeSubscriptions &&
       purchaserInfo.activeSubscriptions.length
     ) {
-      await AsyncStorage.setItem('isActivePurchase', JSON.stringify(true));
-      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsActivePurchase,
+        JSON.stringify(true),
+      );
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsTrialAvailable,
+        JSON.stringify(false),
+      );
     } else {
-      await AsyncStorage.setItem('isActivePurchase', JSON.stringify(false));
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsActivePurchase,
+        JSON.stringify(false),
+      );
     }
 
     if (
@@ -93,9 +115,15 @@ const getPurchaseStatus = async () => {
       restore.allPurchasedProductIdentifiers &&
       restore.allPurchasedProductIdentifiers.length > 0
     ) {
-      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsTrialAvailable,
+        JSON.stringify(false),
+      );
     } else {
-      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(true));
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsTrialAvailable,
+        JSON.stringify(true),
+      );
     }
   } catch (error) {
     logger.error(error);
@@ -110,9 +138,15 @@ const getTrialStatus = async () => {
       transactions.allPurchasedProductIdentifiers &&
       transactions.allPurchasedProductIdentifiers.length > 0
     ) {
-      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(false));
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsTrialAvailable,
+        JSON.stringify(false),
+      );
     } else {
-      await AsyncStorage.setItem('isTrialAvailable', JSON.stringify(true));
+      await AsyncStorage.setItem(
+        AsyncStorageKeys.IsTrialAvailable,
+        JSON.stringify(true),
+      );
     }
   } catch (e) {
     logger.error(e);

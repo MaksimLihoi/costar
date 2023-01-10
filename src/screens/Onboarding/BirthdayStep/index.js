@@ -31,6 +31,7 @@ import DatePicker from 'react-native-date-picker';
 import { colors } from '../../../variables';
 import { trackEvent } from '../../../shared/analytics';
 import { Events } from '../../../shared/analytics/events';
+import { AsyncStorageKeys } from '../../../variables/asyncStorageKeys';
 
 type Props = {
   dispatch: ReduxDispatch,
@@ -59,8 +60,11 @@ class BirthdayStep extends PureComponent<Props, State> {
     const { date } = this.state;
     const { dispatch, navigation } = this.props;
     const formattedDate = getFormattedDate(date);
-    await AsyncStorage.setItem('userBirthDate', formattedDate);
-    await AsyncStorage.setItem('userBirthDateDaily', formattedDate);
+    await AsyncStorage.setItem(AsyncStorageKeys.UserBirthDate, formattedDate);
+    await AsyncStorage.setItem(
+      AsyncStorageKeys.UserBirthDateDaily,
+      formattedDate,
+    );
     const dateParts = formattedDate.split(':');
     const userBirthDate = getJoinedDate(dateParts);
     if (userBirthDate) {
