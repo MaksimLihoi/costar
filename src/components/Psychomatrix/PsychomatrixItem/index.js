@@ -30,10 +30,7 @@ class PsychomatrixItem extends PureComponent<Props> {
           {value ? (
             <Text style={styles.value}>{value}</Text>
           ) : (
-            <Image
-              source={img.main.lockIcon}
-              style={{ width: 14, height: 20 }}
-            />
+            <Image source={img.main.lockIcon} style={styles.lockIcon} />
           )}
           <Text style={styles.title}>{title}</Text>
         </View>
