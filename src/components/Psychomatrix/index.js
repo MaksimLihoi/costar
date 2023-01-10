@@ -69,6 +69,7 @@ class Psychomatrix extends PureComponent<Props, State> {
     index: number,
   ) => {
     const { resultIndexes } = this.state;
+    console.log(resultIndexes);
     return (
       <TouchableOpacity
         key={section.key}
@@ -76,7 +77,7 @@ class Psychomatrix extends PureComponent<Props, State> {
         <PsychomatrixItem
           title={section.title}
           value={
-            resultIndexes.find((item) => item === index)
+            resultIndexes.find((item) => item === index) !== undefined
               ? data[section.key].result
               : 'NULL'
           }
