@@ -37,13 +37,25 @@ type Props = {
   data: DataType,
 };
 
-class Psychomatrix extends PureComponent<Props> {
+type State = {
+  resultIndexes: Array<number>,
+};
+
+class Psychomatrix extends PureComponent<Props, State> {
+  state = {
+    resultIndexes: [],
+  };
   static navigationOptions = {
     header: null,
     headerTintColor: 'white',
   };
 
   sectionsRefs = sections.map(() => React.createRef<any>());
+
+  componentDidMount = () => {
+    this.setRandomIndexes();
+    console.log(this.state.resultIndexes);
+  };
 
   scrollSectionIntoView = (section: number) => {
     const scrollIntoViewOptions = {
@@ -56,17 +68,24 @@ class Psychomatrix extends PureComponent<Props> {
     this.sectionsRefs[section].current.scrollIntoView(scrollIntoViewOptions);
   };
 
-  renderPsychomatrixItem = (section: SectionType, data: DataType) => (
-    <TouchableOpacity
-      key={section.key}
-      onPress={() => this.scrollSectionIntoView(section.id)}>
-      <PsychomatrixItem
-        title={section.title}
-        value={data[section.key].result}
-        icon={section.icon}
-      />
-    </TouchableOpacity>
-  );
+  renderPsychomatrixItem = (
+    section: SectionType,
+    data: DataType,
+    index: number,
+  ) => {
+    const { resultIndexes } = this.state;
+    return (
+      <TouchableOpacity
+        key={section.key}
+        onPress={() => this.scrollSectionIntoView(section.id)}>
+        <PsychomatrixItem
+          title={section.title}
+          value={data[section.key].result}
+          icon={section.icon}
+        />
+      </TouchableOpacity>
+    );
+  };
 
   renderPsychosomaticPosts = (
     section: SectionType,
@@ -97,13 +116,38 @@ class Psychomatrix extends PureComponent<Props> {
     </React.Fragment>
   );
 
+  getRandomNumber = (firstNumber, count) => {
+    const num = Math.floor(Math.random() * count);
+    return firstNumber !== num ? num : this.getRandomNumber(firstNumber, count);
+  };
+
+  setRandomIndexes = () => {
+    const { data } = this.props;
+    const { resultIndexes } = this.state;
+    const activeIndexes = [];
+    sections.forEach(
+      (item, index) =>
+        data[item.key].result !== '-' && activeIndexes.push(index),
+    );
+    const firstRandomIndex = this.getRandomNumber(null, activeIndexes.length);
+    const secondRandomIndex = this.getRandomNumber(
+      firstRandomIndex,
+      activeIndexes.length,
+    );
+
+    resultIndexes.push(
+      activeIndexes[firstRandomIndex],
+      activeIndexes[secondRandomIndex],
+    );
+  };
+
   render() {
     const { data, isActivePurchase, refresh, isFetching } = this.props;
     return (
       <>
         <View style={styles.itemContainer}>
-          {sections.map((section: SectionType) =>
-            this.renderPsychomatrixItem(section, data),
+          {sections.map((section: SectionType, index) =>
+            this.renderPsychomatrixItem(section, data, index),
           )}
         </View>
 
