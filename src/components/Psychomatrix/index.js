@@ -63,23 +63,35 @@ class Psychomatrix extends PureComponent<Props, State> {
     this.sectionsRefs[section].current.scrollIntoView(scrollIntoViewOptions);
   };
 
-  renderPsychomatrixItem = (
+  getPsychomatrixItemValue = (
     section: SectionType,
     data: DataType,
     index: number,
   ) => {
     const { resultIndexes } = this.state;
+    const { isActivePurchase } = this.props;
+    if (isActivePurchase) {
+      return data[section.key].result;
+    } else {
+      return resultIndexes.find((item) => item === index) !== undefined
+        ? data[section.key].result
+        : null;
+    }
+  };
+
+  renderPsychomatrixItem = (
+    section: SectionType,
+    data: DataType,
+    index: number,
+  ) => {
+    const value = this.getPsychomatrixItemValue(section, data, index);
     return (
       <TouchableOpacity
         key={section.key}
         onPress={() => this.scrollSectionIntoView(section.id)}>
         <PsychomatrixItem
           title={section.title}
-          value={
-            resultIndexes.find((item) => item === index) !== undefined
-              ? data[section.key].result
-              : null
-          }
+          value={value}
           icon={section.icon}
         />
       </TouchableOpacity>
