@@ -52,11 +52,6 @@ class Psychomatrix extends PureComponent<Props, State> {
 
   sectionsRefs = sections.map(() => React.createRef<any>());
 
-  componentDidMount = () => {
-    this.setRandomIndexes();
-    console.log(this.state.resultIndexes);
-  };
-
   scrollSectionIntoView = (section: number) => {
     const scrollIntoViewOptions = {
       align: 'top',
@@ -80,7 +75,11 @@ class Psychomatrix extends PureComponent<Props, State> {
         onPress={() => this.scrollSectionIntoView(section.id)}>
         <PsychomatrixItem
           title={section.title}
-          value={data[section.key].result}
+          value={
+            resultIndexes.find((item) => item === index)
+              ? data[section.key].result
+              : 'NULL'
+          }
           icon={section.icon}
         />
       </TouchableOpacity>
@@ -143,6 +142,7 @@ class Psychomatrix extends PureComponent<Props, State> {
 
   render() {
     const { data, isActivePurchase, refresh, isFetching } = this.props;
+    this.setRandomIndexes();
     return (
       <>
         <View style={styles.itemContainer}>
